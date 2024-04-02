@@ -36,6 +36,11 @@
 
 /* General Styles */
 
+html {
+    scroll-behavior: smooth;
+}
+
+
 body {
     background-color: var(--clr-light);
     color: var(--clr-dark);
@@ -184,6 +189,17 @@ header {
     position: fixed;
 }
 
+.nav-open .hamburger {
+    transform: rotate(.625turn);
+}
+
+.nav-open .hamburger::after {
+    opacity: 0;
+}
+
+.nav-open .hamburger::before {
+    transform: rotate(90deg) translateX(-6px);
+}
 
 .hamburger {
 
@@ -194,7 +210,7 @@ header {
 .hamburger,
 .hamburger::before,
 .hamburger::after {
-    background: var(--clr-dark);
+    background: var(--clr-accent);
     width: 2em;
     height: 3px;
     border-radius: 1em;
