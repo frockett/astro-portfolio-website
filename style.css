@@ -264,7 +264,7 @@ header {
 /* About Me Section */
 
 .about-me {
-    max-width: 1500px;
+    max-width: 1600px;
     margin: 0 auto;
 }
 
@@ -275,7 +275,7 @@ header {
 @media (min-width: 800px) {
     .about-me {
         display: grid;
-        grid-template-columns: 1fr 200px;
+        grid-template-columns: 1fr 350px;
         grid-template-areas: 
         "title img"
         "subtitle img"
@@ -290,6 +290,10 @@ header {
 
     .about-me__img {
         grid-area: img;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        margin-top: 2em;
     }
 }
 
