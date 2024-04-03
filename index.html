@@ -28,10 +28,28 @@
             <ul class="nav__list">
                 <li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
                 <li class="nav__item"><a href="#work" class="nav__link">Projects</a></li>
-                <li class="nav__item"><a href="#about" class="nav__link">About Me</a></li>
+                <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                <li class="nav__item"><a href="assets/Resume.pdf" class="nav__link">Resume</a></li>
             </ul>
         </nav>
     </header>
+
+
+    <div class="social-links-fixed">
+        <ul class="social-list-fixed">
+            <li class="social-list__item">
+                <a href="mailto:crockett.d.ford@gmail.com" class="social-list__link"><i class="fa-regular fa-envelope"></i></a>
+            </li>
+            <li class="social-list__item">
+                <a class="social-list__link" href="https://twitter.com/_crockettford"><i class="fa-brands fa-x-twitter"></i></a>
+            </li>
+            <li class="social-list__item">
+                <a class="social-list__link" href="https://github.com/frockett"><i class="fa-brands fa-github"></i></a>
+            </li>
+        </ul>
+    </div>
+    
+
 
     <!-- Introduction -->
     <section class="intro" id="home">
@@ -39,8 +57,10 @@
             Hi, I am <strong>Crockett Ford</strong>
         </h1>
         <p class="section__subtitle section__subtitle--intro">.NET dev and tinkerer</p>
-        <img src="img/sandwich-profile.jpg" alt="a picture of Crockett eating a sandwich" class="intro__img">
+        <img src="img/portrait-danielle-2022.jpg" alt="a picture of Crockett eating a sandwich" class="intro__img">
     </section>
+
+
 
         <!-- My Work -->
         <section class="my-work" id="work">
@@ -53,10 +73,10 @@
                 <div class="portfolio__item">
                     <img src="img/portfolio-item-1.png" alt="Portfolio image" class="portfolio__img">
                     <div class="portfolio__text">
-                        <div class="portfolio__title">Console Shift Tracker</div>
-                        <div class="portfolio__description">Blah blah blah this project is a blah blah</div>
+                        <div class="portfolio__title">Shift Tracker</div>
+                        <div class="portfolio__description">Includes both an EF-Core/MSSQL backend with API and a simple console project that consumes it. Logs employee shifts.</div>
                     </div>
-                    <a href="#" class="portfolio__link"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://github.com/frockett/Console-ShiftTracker" class="portfolio__link"><i class="fa-brands fa-github"></i></a>
                 </div>
     
                 
@@ -64,20 +84,20 @@
                 <div class="portfolio__item">
                     <img src="img/portfolio-item-2.png" alt="Portfolio image" class="portfolio__img">
                     <div class="portfolio__text">
-                        <div class="portfolio__title">Console Shift Tracker</div>
-                        <div class="portfolio__description">Blah blah blah this project is a blah blah</div>
+                        <div class="portfolio__title">Sales Management App</div>
+                        <div class="portfolio__description">Track sales and display data. Use case is a small online vintage designer clothes store. Uses .NET, EF Core, and SQLite.</div>
                     </div>
-                    <a href="#" class="portfolio__link"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://github.com/frockett/sales-tracking-app" class="portfolio__link"><i class="fa-brands fa-github"></i></a>
                 </div>
     
                 <!--Portfolio Item 3-->
                 <div class="portfolio__item">
                     <img src="img/portfolio-item-3.png" alt="Portfolio image" class="portfolio__img">
                     <div class="portfolio__text">
-                        <div class="portfolio__title">Console Shift Tracker</div>
-                        <div class="portfolio__description">Blah blah blah this project is a blah blah</div>
+                        <div class="portfolio__title">Console Flashcards</div>
+                        <div class="portfolio__description">NET 8 and MSSQL console app. Study a stack of flashcards and record info about study session. Display study session records.</div>
                     </div>
-                    <a href="#" class="portfolio__link"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://github.com/frockett/Console-Flashcards" class="portfolio__link"><i class="fa-brands fa-github"></i></a>
                 </div>
     
                 <!--Portfolio Item 4-->
@@ -131,7 +151,7 @@
 
     <!-- Footer -->
     <footer class="footer">
-        
+
         <ul class="social-list">
             <li class="social-list__item">
                 <a href="mailto:crockett.d.ford@gmail.com" class="social-list__link"><i class="fa-regular fa-envelope"></i></a>
@@ -143,6 +163,10 @@
                 <a class="social-list__link" href="https://github.com/frockett"><i class="fa-brands fa-github"></i></a>
             </li>
         </ul>
+
+        <div class="footer-content">
+            <p>&copy; 2024 Crockett Ford</p>
+        </div>
     </footer>
 
     <script src="js/index.js"></script>
