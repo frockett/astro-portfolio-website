@@ -13,9 +13,9 @@
     --fw-reg: 300;
     --fw-bold: 900;
     
-    --clr-light: #fff;
-    --clr-dark: #303030;
-    --clr-accent: #16e0bd;
+    --clr-light: #e7e7e7;
+    --clr-dark: #141414;
+    --clr-accent: #920303;
 
     --fs-h1: 3rem;
     --fs-h2: 2.25rem;
@@ -323,8 +323,6 @@ header {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 20px;
-    max-width: calc(1200px + 40px);
-    margin: 0 auto;
 }
 
 .portfolio__item {
@@ -338,16 +336,24 @@ header {
         opacity 250ms linear;
 }
 
+.portfolio__description {
+    color: var(--clr-light);
+    font-size: var(--fs-h3);
+    padding: 10px;
+    text-align: center;
+    font-size: 1rem;
+}
+
 .portfolio__img:hover, 
 .portfolio__item:focus .portfolio__img {
-    transform: scale(1.2);
+    transform: scale(1.1);
     opacity: .75;
 }
 
 /* Footer */
 
 .footer {
-    background: #111;
+    background: #000000;
     color: var(--clr-accent);
     text-align: center;
     padding: 2.5em 0;
