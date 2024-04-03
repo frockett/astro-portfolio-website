@@ -36,7 +36,6 @@
 
 /* General Styles */
 
-
 html {
     scroll-behavior: smooth;
 }
@@ -53,10 +52,11 @@ body {
 
 header {
     padding: 0em 3em;
+
 }
 
 section {
-    padding: 5em 7em;
+    padding: 15em 7em;
 }
 
 @media (max-width: 600px) {
@@ -169,6 +169,47 @@ header {
     color: var(--clr-accent);
 }
 
+
+/* Social Links box */
+
+@media (max-width: 700px) {
+    .social-links-fixed {
+        display: none;
+    }
+}
+
+.social-links-fixed {
+    position: fixed;
+    top: 150px; /* Adjust this value based on your header's height */
+    right: 20px; /* Distance from the right edge of the viewport */
+    z-index: 10; /* Ensures it stays above other content */
+}
+
+.social-list-fixed {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Stack icons vertically */
+    align-items: center; /* Center-align the icons */
+}
+
+.social-list__item {
+    margin: 10px 0; /* Space out the icons */
+}
+
+.social-list__link {
+    color: var(--clr-dark); /* Or any color you prefer */
+    font-size: var(--fs-h3); /* Adjust icon size */
+}
+
+.social-list-fixed .social-list__link:hover {
+    color: var(--clr-accent);
+}
+
+
+
+
 /* Intro section */
 
 .intro {
@@ -183,8 +224,10 @@ header {
     display: inline-block;
 }
 
+
 @media (min-width: 900px) {
     .intro {
+        position: relative;
         display: grid;
         width: min-content;
         margin: 0 auto;
@@ -206,6 +249,7 @@ header {
         text-align: right;
         position: relative;
     }
+
 }
 
 
@@ -265,6 +309,7 @@ header {
     gap: 20px;
 }
 
+
 .portfolio__item {
     background: var(--clr-accent);
     position: relative;
@@ -279,7 +324,7 @@ header {
     bottom: .3em;
     right: .3em;
     color: var(--clr-light);
-    font-size: var(--fs-h3);
+    font-size: var(--fs-h2);
 }
 
 .portfolio__img {
@@ -317,7 +362,7 @@ header {
     background: #000000;
     color: var(--clr-accent);
     text-align: center;
-    padding: 2.5em 0;
+    padding: 1em 0;
     font-size: var(--fs-h2);
 }
 
@@ -329,7 +374,19 @@ header {
 .footer__link {
     font-size: var(--fs-h3);
     font-weight: var(--fw-bold);
-;
+}
+
+.footer-content {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.footer-content p{
+    color: var(--clr-accent); /* Ensure text is visible against the footer background */
+    margin: 0 auto; /* Add some space below the copyright text */
+    font-size: var(--fs-body); /* Adjust font size as needed */
+    text-align: center;
+    justify-content: center;
 }
 
 .footer__link:hover,
@@ -341,11 +398,12 @@ header {
     text-decoration: underline;
 }
 
-.social-list {
+.footer .social-list {
     list-style: none;
     display: flex;
     justify-content: center;
-    margin: 0 0;
+    margin: 0 auto;
+    padding: 0;
 }
 
 .social-list__item {
