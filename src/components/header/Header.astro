@@ -1,0 +1,16 @@
+---
+import Navigation from './Navigation.astro';
+import ThemeController from './ThemeController.astro';
+---
+
+<header
+  class="w-screen flex justify-between items-center p-4 text-sm h-20 lg:text-lg"
+>
+  <div class="font-slab font-bold text-secondary">C. Ford</div>
+  <div class="w-min flex shrink items-center gap-8">
+    <ThemeController />
+    <nav>
+      <Navigation />
+    </nav>
+  </div>
+</header>

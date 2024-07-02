@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import localBioPhoto from '../images/portrait-danielle-2022.jpg';
+import Card from '../components/Card.astro';
+---
+
+<Layout title="Crockett Ford">
+  <div
+    class="md:container md:mx-auto grid
+    [grid-template-rows:repeat(auto-fill,auto)]
+    [grid-template-areas:'head''para''image']
+    md:[grid-template-areas:'head_image''para_image']
+    md:[grid-template-columns:2fr_1.5fr]
+    md:[grid-template-rows:1fr_3fr]"
+  >
+    <h1
+      data-aos="fade-right"
+      class="font-slab text-3xl md:text-5xl font-bold [grid-area:head]"
+    >
+      This is the home page
+    </h1>
+
+    <div
+      data-aos="fade-left"
+      class="mask mask-parallelogram-3 w-8/12 mx-auto [grid-area:image]"
+    >
+      <Image src={localBioPhoto} alt="profile picture" />
+    </div>
+
+    <div class="[grid-area:para]">
+      <p data-aos="fade-in" class="font-sans">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti nemo
+        reprehenderit optio obcaecati aliquam repellat quas earum, qui quis
+        libero assumenda, ratione eos quia minus? Consequuntur quae expedita
+        nemo quaerat!
+      </p>
+    </div>
+  </div>
+  <div class="p-4 my-4 bg-primary md:container md:mx-auto px-4">
+    <p class="font-sans text-white">This is smaller text</p>
+  </div>
+</Layout>
+
+<style>
+  * {
+    border: 1px solid red;
+  }
+</style>

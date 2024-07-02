@@ -1,0 +1,9 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const { link, icon } = Astro.props;
+---
+
+<a class="social-link" href={`${link}`}>
+  <Icon class="transition hover:text-primary" size={20} name={icon} />
+</a>
