@@ -3,37 +3,56 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import localBioPhoto from '../images/portrait-danielle-2022.jpg';
 import Card from '../components/Card.astro';
+import FixedSocialsBox from '../components/FixedSocialsBox.astro';
 ---
 
 <Layout title="Crockett Ford">
+  <FixedSocialsBox />
+
   <div
     class="md:container md:mx-auto grid
     [grid-template-rows:repeat(auto-fill,auto)]
     [grid-template-areas:'head''para''image']
+    
+    place-items-start
+    items-center
+    px-4
+    gap-2
+    md:px-28
+    md:py-10
+    md:mt-8
+    md:h-min
     md:[grid-template-areas:'head_image''para_image']
     md:[grid-template-columns:2fr_1.5fr]
-    md:[grid-template-rows:1fr_3fr]"
+    md:[grid-template-rows:1fr_2fr]"
   >
     <h1
       data-aos="fade-right"
-      class="font-slab text-3xl md:text-5xl font-bold [grid-area:head]"
+      class="font-slab text-3xl md:place-self-auto self-start lg:self-end md:text-6xl font-bold [grid-area:head]"
     >
       This is the home page
     </h1>
 
     <div
       data-aos="fade-left"
-      class="mask mask-parallelogram-3 w-8/12 mx-auto [grid-area:image]"
+      class="mask mask-parallelogram-3 w-1/2 md:w-9/12 mx-auto [grid-area:image]"
     >
-      <Image src={localBioPhoto} alt="profile picture" />
+      <Image src={localBioPhoto} alt="A portrait of Crockett" class="shadow" />
     </div>
 
-    <div class="[grid-area:para]">
+    <div class="[grid-area:para] my-auto flex flex-col gap-8 pr-8">
       <p data-aos="fade-in" class="font-sans">
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti nemo
         reprehenderit optio obcaecati aliquam repellat quas earum, qui quis
         libero assumenda, ratione eos quia minus? Consequuntur quae expedita
         nemo quaerat!
+      </p>
+
+      <p data-aos="fade-in" class="font-sans">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis
+        unde architecto perspiciatis laudantium, nihil nostrum odit consectetur?
+        Incidunt blanditiis dolore debitis! Odio id placeat facilis culpa, minus
+        voluptatibus tempore provident.
       </p>
     </div>
   </div>
@@ -44,6 +63,6 @@ import Card from '../components/Card.astro';
 
 <style>
   * {
-    border: 1px solid red;
+    /* border: 1px solid red; */
   }
 </style>
