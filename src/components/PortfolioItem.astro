@@ -13,12 +13,12 @@ const {
 } = Astro.props;
 ---
 
-<li class="md:px-24 md:py-12 md:w-8/12 w-full mx-auto">
+<li class="lg:px-24 md:py-12 md:w-8/12 w-full mx-auto">
   <div
     class="grid mx-auto w-full md:max-w-4xl items-center grid-cols-12 grid-rows-3 md:grid-rows-2"
   >
     <div
-      data-aos="fade-left"
+      data-aos="fade-up"
       class="flex justify-end flex-col gap-4 items-end col-start-2 col-end-13 md:col-start-6 md:col-end-13 row-start-2 row-end-4 md:row-start-1 md:row-end-3 z-10"
     >
       <h3
@@ -29,10 +29,12 @@ const {
       <div class="bg-primary font-sans text-white md:min-h-24 p-4 md:max-w-md">
         {projectDescription}
       </div>
-      <ul class="flex justify-end">
+      <ul class="flex flex-wrap justify-end">
         {
           tagList.map((tag) => (
-            <li class="inline-block ml-4 bg-primary px-2 text-white">{tag}</li>
+            <li class="block text-nowrap ml-2 mb-2 sm:ml-4 bg-primary text-s sm:text-base px-2 text-white">
+              {tag}
+            </li>
           ))
         }
       </ul>
@@ -50,7 +52,7 @@ const {
       data-aos="fade-right"
     >
       <div
-        class="wrap h-auto md:col-start-1 md:col-end-6 row-start-1 row-end-3"
+        class="wrap h-auto col-start-1 col-end-12 md:col-end-10 row-start-1 row-end-3"
       >
         <Image
           class="opacity-90 hue-rotate-30 rounded"
@@ -64,7 +66,7 @@ const {
 
 <style>
   .wrap {
-    min-width: 300px;
+    /* min-width: 300px; */
     width: 100%;
     position: relative;
   }
