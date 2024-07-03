@@ -1,0 +1,87 @@
+---
+import Image from 'astro/components/Image.astro';
+import SocialIcon from './SocialIcon.astro';
+
+const {
+  projectTitle,
+  projectDescription,
+  tagList,
+  iconLinks,
+  imageSrc,
+  imageLink,
+  imageAlt,
+} = Astro.props;
+---
+
+<li class="md:px-24 md:py-12 md:w-8/12 w-full mx-auto">
+  <div
+    class="grid mx-auto w-full md:max-w-4xl items-center grid-cols-12 grid-rows-3 md:grid-rows-2"
+  >
+    <div
+      data-aos="fade-left"
+      class="flex justify-end flex-col gap-4 items-end col-start-2 col-end-13 md:col-start-6 md:col-end-13 row-start-2 row-end-4 md:row-start-1 md:row-end-3 z-10"
+    >
+      <h3
+        class="font-sans font-semibold text-2xl bg-primary p-2 text-white md:bg-none"
+      >
+        {projectTitle}
+      </h3>
+      <div class="bg-primary font-sans text-white md:min-h-24 p-4 md:max-w-md">
+        {projectDescription}
+      </div>
+      <ul class="flex justify-end">
+        {
+          tagList.map((tag) => (
+            <li class="inline-block ml-4 bg-primary px-2 text-white">{tag}</li>
+          ))
+        }
+      </ul>
+      <div class="links flex gap-4 justify-end">
+        {
+          iconLinks.map((icon) => (
+            <SocialIcon link={icon.link} icon={icon.icon} size={30} />
+          ))
+        }
+      </div>
+    </div>
+    <a
+      class="min-w-300px col-start-1 col-end-12 md:col-end-10 row-start-1 row-end-3"
+      href={imageLink}
+      data-aos="fade-right"
+    >
+      <div
+        class="wrap h-auto md:col-start-1 md:col-end-6 row-start-1 row-end-3"
+      >
+        <Image
+          class="opacity-90 hue-rotate-30 rounded"
+          src={imageSrc}
+          alt={imageAlt}
+        />
+      </div>
+    </a>
+  </div>
+</li>
+
+<style>
+  .wrap {
+    min-width: 300px;
+    width: 100%;
+    position: relative;
+  }
+  .wrap:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background: #4EA699; */
+    background: gray;
+    opacity: 0.4;
+    transition: 150ms ease-in-out;
+  }
+
+  .wrap:hover:after {
+    background: none;
+  }
+</style>

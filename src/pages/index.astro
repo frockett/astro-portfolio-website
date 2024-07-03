@@ -1,8 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import localBioPhoto from '../images/portrait-danielle-2022.jpg';
+import scraperPortImg from '../images/mercari-scraper-email-screenshot.png';
 import FixedSocialsBox from '../components/FixedSocialsBox.astro';
+import backgroundImage from '../images/md-geometric-bg.jpg';
+import PortfolioItem from '../components/PortfolioItem.astro';
+import SocialIcon from '../components/SocialIcon.astro';
+const optimizedBgImage = await getImage({ src: backgroundImage });
 ---
 
 <Layout title="Crockett Ford">
@@ -16,6 +22,7 @@ import FixedSocialsBox from '../components/FixedSocialsBox.astro';
     place-items-start
     items-center
     px-4
+    mb-16
     gap-2
     md:px-28
     md:py-10
@@ -36,7 +43,7 @@ import FixedSocialsBox from '../components/FixedSocialsBox.astro';
       data-aos="fade-left"
       class="mask mask-parallelogram-3 w-1/2 md:w-9/12 mx-auto [grid-area:image]"
     >
-      <Image src={localBioPhoto} alt="A portrait of Crockett" class="shadow" />
+      <Image src={localBioPhoto} alt="A portrait of Crockett" class="" />
     </div>
 
     <div class="[grid-area:para] my-auto flex flex-col gap-8 pr-8">
@@ -55,9 +62,37 @@ import FixedSocialsBox from '../components/FixedSocialsBox.astro';
       </p>
     </div>
   </div>
-  <div class="p-4 my-4 bg-primary md:container md:mx-auto px-4">
-    <p class="font-sans text-white">This is smaller text</p>
+  <div id="work" class="p-4 min-h-72 bg-base-300 w-full mx-auto px-4">
+    <div class="container mx-auto my-0 p-2 md:p-4 md:w-8/12 md:px-24 w-full">
+      <h2 class="font-sans font-bold text-2xl sm:text-4xl">
+        Selected Projects
+      </h2>
+    </div>
+    <ul>
+      <PortfolioItem
+        projectTitle="Price alert bot"
+        projectDescription="A simple .net app that performs keyword searches on mercari and sends hourly email alerts for listings within a specified price range. Built to save resellers time sourcing new listings."
+        tagList={['.Net', 'Playwright', 'Docker']}
+        iconLinks={[
+          {
+            link: 'https://github.com/frockett/product-scraper',
+            icon: 'bi:github',
+          },
+        ]}
+        imageSrc={scraperPortImg}
+        imageLink="https://github.com/frockett/product-scraper"
+        imageAlt="a screenshot of an email containing a list full of flagged listings"
+      />
+    </ul>
   </div>
+
+  <!-- <div class="h-lvh w-screen">
+      <div
+        style={`background-image: url('${optimizedBgImage.src}')`}
+        class="bg-no-repeat bg-cover bg-fixed h-full"
+      >
+      </div>
+    </div> -->
 </Layout>
 
 <style>

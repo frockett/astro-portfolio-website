@@ -23,7 +23,7 @@ export default {
           secondary: '#CEA2AC',
           accent: '#2DD881',
           neutral: '#333333',
-          'neutral-content': '#5E5E5E',
+          'neutral-content': '#8E8E8E',
           'base-100': '#ffffff',
         },
         dark: {
