@@ -22,7 +22,7 @@
   <input
     id="themeToggle"
     type="checkbox"
-    value="dark"
+    value="darkCustom"
     class="toggle theme-controller"
   />
   <svg
@@ -42,23 +42,26 @@
 
 <script>
   const themeToggle = document.getElementById('themeToggle');
-  const storedTheme = localStorage.getItem('theme');
-
-  function getToggleState() {
-    console.log(storedTheme);
-    return themeToggle.checked;
-  }
+  const preferredTheme = checkForPreference();
+  let storedTheme = localStorage.getItem('theme');
 
   document.addEventListener('DOMContentLoaded', () => {
-    let isChecked = getToggleState();
-    pageLoadCheck(storedTheme, isChecked);
+    if (!storedTheme) {
+      storedTheme = preferredTheme;
+    }
+    syncThemeToggle(storedTheme, getToggleState());
+    updatePreference(getToggleState());
   });
+
+  function getToggleState() {
+    return themeToggle.checked;
+  }
 
   themeToggle.addEventListener('click', (e) => {
     updatePreference(e.target.checked);
   });
 
-  function pageLoadCheck(storedTheme, isChecked) {
+  function syncThemeToggle(storedTheme, isChecked) {
     if (
       (storedTheme === 'light' && isChecked) ||
       (storedTheme === 'dark' && !isChecked)
@@ -71,5 +74,13 @@
     isChecked === true
       ? localStorage.setItem('theme', 'dark')
       : localStorage.setItem('theme', 'light');
+  }
+
+  function checkForPreference() {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark';
+    } else {
+      return 'light';
+    }
   }
 </script>

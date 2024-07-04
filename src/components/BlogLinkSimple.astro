@@ -1,0 +1,13 @@
+---
+import { getCollection } from 'astro:content';
+const { title, url, description, pubDate } = Astro.props;
+---
+
+<li class="flex flex-col">
+  <div class="italic text-sm mb-1">{pubDate.toDateString()}</div>
+  <a
+    class="transition text-primary font-semibold text-lg md:text-xl hover:underline"
+    href={url}>{title}</a
+  >
+  <div class="mt-1">{description}</div>
+</li>

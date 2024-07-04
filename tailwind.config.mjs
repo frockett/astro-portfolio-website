@@ -26,7 +26,7 @@ export default {
           'neutral-content': '#8E8E8E',
           'base-100': '#ffffff',
         },
-        dark: {
+        darkCustom: {
           ...require('daisyui/src/theming/themes')['dark'],
           primary: '#B15966',
           secondary: '#315D53',
@@ -34,6 +34,7 @@ export default {
           neutral: '#CCCCCC',
           'neutral-content': '#8A8A8A',
           'base-100': '#000000',
+          'base-content': '#C8CBD0',
         },
       },
       'night',
