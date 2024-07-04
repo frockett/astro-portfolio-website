@@ -1,0 +1,37 @@
+---
+import Image from 'astro/components/Image.astro';
+import Layout from './Layout.astro';
+const { frontmatter } = Astro.props;
+const hasImage = frontmatter.image ? true : false;
+---
+
+<Layout title={frontmatter.title}>
+  <div class="flex flex-shrink mx-4">
+    {
+      hasImage ? (
+        <Image
+          class="mx-auto py-8"
+          src={frontmatter.image.url}
+          alt={frontmatter.image.alt}
+          width="1000"
+          height="1000"
+        />
+      ) : (
+        ''
+      )
+    }
+  </div>
+
+  <div class="m-4 py-4 px-8 flex flex-col gap-4 md:max-w-4xl mx-auto">
+    <h1 class="font-slab font-bold text-2xl sm:text-4xl">{frontmatter.title}</h1>
+    <div class="italic text-xl">{frontmatter.description}</div>
+    <div class="text-sm">{frontmatter.pubDate.toDateString()}</div>
+  </div>
+
+  <div
+    class="mx-auto px-8  mb-32 max-w-4xl text-lg leading-8 font-sans rounded-md"
+  >
+    <slot />
+    <div class="flex justify-end"><a class="text-primary hover:underline font-semibold" href="/blog/">Return to blog</a></div>
+  </div>
+</Layout>

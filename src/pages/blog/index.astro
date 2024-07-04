@@ -1,5 +1,34 @@
 ---
+import { getCollection } from 'astro:content';
+import Card from '../../components/Card.astro';
 import Layout from '../../layouts/Layout.astro';
+import BlogLinkSimple from '../../components/BlogLinkSimple.astro';
+
+const allPosts = await getCollection('posts');
 ---
 
-<Layout title="Crockett's Corner and/or Cave"> Blah blah </Layout>
+<Layout title="Crockett's Corner and/or Cave">
+  <!-- <Card
+    href="https://google.com"
+    title="This is a test card"
+    body="Woopy doopy oh yeah let's click this link you know what time it is hell yeah bro"
+  /> -->
+
+  <div>
+    <ul
+      class="flex flex-col gap-8 max-w-3xl m-8 p-4 mx-auto"
+      style=""
+    >
+      {
+        allPosts.map((post) => (
+          <BlogLinkSimple
+            url={`/blog/${post.slug}/`}
+            title={post.data.title}
+            pubDate={post.data.pubDate}
+            description={post.data.description}
+          />
+        ))
+      }
+    </ul>
+  </div>
+</Layout>
