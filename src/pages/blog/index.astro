@@ -4,20 +4,18 @@ import Card from '../../components/Card.astro';
 import Layout from '../../layouts/Layout.astro';
 import BlogLinkSimple from '../../components/BlogLinkSimple.astro';
 import TagList from '../../components/TagList.astro';
+import { sortPosts } from '../../scripts/Utils.js';
 
 const allPosts = await getCollection('posts');
-const sortedPosts = allPosts.sort(
-  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
-);
+const sortedPosts = sortPosts(allPosts).sortByDate();
+
+// const sortedPosts = allPosts.sort(
+//   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+// );
 ---
 
-<Layout title="Crockett's Corner and/or Cave">
-  <!-- <Card
-    href="https://google.com"
-    title="This is a test card"
-    body="Woopy doopy oh yeah let's click this link you know what time it is hell yeah bro"
-  /> -->
-  <div class="max-w-4xl mx-auto p-4 md:mt-8 mt-4" >
+<Layout title="Crockett's Blog">
+  <div class="max-w-4xl mx-auto p-4 md:mt-8 mt-4">
     <h2 class="md:text-5xl text-2xl font-slab font-bold">
       Using a Randomness Beacon to Talk to God
     </h2>
