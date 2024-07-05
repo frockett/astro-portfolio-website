@@ -13,9 +13,29 @@ const { title } = Astro.props;
 <!doctype html>
 <html lang="en">
   <head>
+    <script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"
+    ></script>
+    <script>
+      function checkForPreference() {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'darkCustom';
+        } else {
+          return 'lightCustom';
+        }
+      }
+
+      const preference = checkForPreference();
+      const theme = localStorage.getItem('theme') || preference;
+
+      try {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+      } catch (e) {}
+    </script>
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <meta name="generator" content={Astro.generator} />
