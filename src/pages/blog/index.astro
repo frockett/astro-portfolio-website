@@ -6,6 +6,9 @@ import BlogLinkSimple from '../../components/BlogLinkSimple.astro';
 import TagList from '../../components/TagList.astro';
 
 const allPosts = await getCollection('posts');
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
 ---
 
 <Layout title="Crockett's Corner and/or Cave">
@@ -14,15 +17,24 @@ const allPosts = await getCollection('posts');
     title="This is a test card"
     body="Woopy doopy oh yeah let's click this link you know what time it is hell yeah bro"
   /> -->
+  <div class="max-w-4xl mx-auto p-4 md:mt-8 mt-4" >
+    <h2 class="md:text-5xl text-2xl font-slab font-bold">
+      Using a Randomness Beacon to Talk to God
+    </h2>
+    <p class="italic mt-8 md:text-lg">
+      Similar to the one found at the National Institute of Standards and
+      Technology
+    </p>
+  </div>
 
-  <div style="border:1px solid red" class="max-w-3xl mx-auto p-4">
+  <div class="max-w-4xl mx-auto p-4">
     <TagList />
   </div>
 
   <div>
-    <ul class="flex flex-col gap-8 max-w-3xl m-8 p-4 mx-auto" style="">
+    <ul class="flex flex-col gap-8 max-w-4xl m-4 p-4 mx-auto" style="">
       {
-        allPosts.map((post) => (
+        sortedPosts.map((post) => (
           <BlogLinkSimple
             url={`/blog/${post.slug}/`}
             title={post.data.title}

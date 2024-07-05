@@ -2,6 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import BlogLinkSimple from '../../../components/BlogLinkSimple.astro';
 import { getCollection } from 'astro:content';
+import { Icon } from 'astro-icon/components';
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('posts');
@@ -26,15 +27,32 @@ const { posts } = Astro.props;
 ---
 
 <Layout title={tag}>
-  <p>Posts tagged with {tag}</p>
-  {
-    posts.map((post) => (
-      <BlogLinkSimple
-        title={post.data.title}
-        url={`/blog/posts/${post.slug}`}
-        description={post.data.description}
-        pubDate={post.data.pubDate}
-      />
-    ))
-  }
+  <div
+    class="max-w-4xl m-4 p-4 mx-auto md:mt-8 mt-4"
+  >
+    <div class="mb-8">
+      <h2 class="text-2xl md:text-4xl font-slab font-bold">
+        Posts tagged with <span class="italic">#{tag}</span>
+      </h2>
+    </div>
+    <div>
+      <ul class="flex flex-col gap-8 mx-auto">
+        {
+          posts.map((post) => (
+            <BlogLinkSimple
+              title={post.data.title}
+              url={`/blog/${post.slug}`}
+              description={post.data.description}
+              pubDate={post.data.pubDate}
+            />
+          ))
+        }
+      </ul>
+    </div>
+    <div class="flex justify-end max-w-2xl mx-auto mt-24">
+      <a class="text-primary hover:underline font-semibold" href="/blog/"
+        >Return to All Posts</a
+      >
+    </div>
+  </div>
 </Layout>
