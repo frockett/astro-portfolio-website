@@ -4,8 +4,8 @@ const allPosts = await getCollection('posts');
 const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
 ---
 
-<div class="flex gap-2 items-center">
+<div class="flex flex-wrap gap-2 items-center">
     {tags.map((tag) => (
-        <p class="transition border-dotted border-2 border-primary hover:border-base-content hover:bg-primary rounded-full p-1 px-2 font-semibold hover:text-white w-min hover:underline"><a href=`/blog/tags/${tag}`>{tag}</a></p>
+        <p class="transition border-dotted border-2 border-primary hover:bg-primary rounded-full p-1 px-2 text-sm font-semibold hover:text-white w-min hover:underline"><a href=`/blog/tags/${tag}`>{tag}</a></p>
     ))}
 </div>
