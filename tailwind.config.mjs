@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
@@ -19,7 +18,7 @@ export default {
   daisyui: {
     themes: [
       {
-        light: {
+        lightCustom: {
           ...require('daisyui/src/theming/themes')['light'],
           primary: '#4EA699',
           secondary: '#CEA2AC',
@@ -39,7 +38,6 @@ export default {
           'base-content': '#C8CBD0',
         },
       },
-      'night',
     ],
   },
 };
