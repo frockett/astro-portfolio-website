@@ -21,6 +21,7 @@ export default {
         lightCustom: {
           ...require('daisyui/src/theming/themes')['light'],
           primary: '#4EA699',
+          'primary-content': '#3A7869',
           secondary: '#CEA2AC',
           accent: '#2DD881',
           neutral: '#333333',
@@ -30,6 +31,7 @@ export default {
         darkCustom: {
           ...require('daisyui/src/theming/themes')['dark'],
           primary: '#B15966',
+          'primary-content': '#D09AA2',
           secondary: '#315D53',
           accent: '#D22E7E',
           neutral: '#CCCCCC',
