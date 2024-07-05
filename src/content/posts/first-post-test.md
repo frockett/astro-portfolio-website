@@ -4,9 +4,9 @@ pubDate: 2024-07-04
 description: 'blah blah here is a tagline'
 author: Crockett
 image:
-    url: https://cdn.britannica.com/79/91479-050-24F98E12/Guernica-canvas-Pablo-Picasso-Madrid-Museo-Nacional-1937.jpg
+    url: 'https://cdn.britannica.com/79/91479-050-24F98E12/Guernica-canvas-Pablo-Picasso-Madrid-Museo-Nacional-1937.jpg'
     alt: 'Guernica by Pablo Picasso'
-tags: ['writing', 'culture']
+tags: ["writing", "culture"]
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et neque orci. Sed dui eros, placerat ac elit nec, sollicitudin tempus dui. Curabitur vitae dictum lacus. Cras pharetra mollis quam id pellentesque. Aenean dolor ex, laoreet id elementum fringilla, mattis vitae libero. Curabitur viverra at elit vel vehicula. Duis gravida felis metus, vitae fringilla odio accumsan nec. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla facilisi. <p>&nbsp;</p>
