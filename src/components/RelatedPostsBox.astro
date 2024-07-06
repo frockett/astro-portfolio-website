@@ -13,20 +13,22 @@ const relatedSansCurrent = relatedPosts.filter(
 );
 ---
 
-<div class="mx-auto md:max-w-2xl bg-base-300 p-8 rounded flex flex-col gap-4">
-  <div class="md:text-3xl text-xl font-slab font-bold mb-8">Related Posts</div>
-  {
-    relatedSansCurrent.map((post) => (
-      <BlogLinkSimple
-        title={post.data.title}
-        description={post.data.description}
-        url={`/blog/${post.slug}`}
-        pubDate={post.data.pubDate}
-      />
-    ))
-  }
-</div>
-
+{
+  relatedSansCurrent.length > 0 && (
+    <div class="mx-auto md:max-w-2xl bg-base-300 p-8 rounded flex flex-col gap-4">
+      <div class="md:text-3xl text-xl font-slab font-bold mb-8">
+        Related Posts
+      </div>
+      {relatedSansCurrent.map((post) => (
+        <BlogLinkSimple
+          title={post.data.title}
+          url={`/blog/${post.slug}`}
+          pubDate={post.data.pubDate}
+        />
+      ))}
+    </div>
+  )
+}
 <script>
   console.log('hello!');
 </script>
