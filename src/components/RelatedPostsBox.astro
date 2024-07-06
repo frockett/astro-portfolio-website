@@ -1,0 +1,32 @@
+---
+import BlogLinkSimple from './BlogLinkSimple.astro';
+import { getCollection } from 'astro:content';
+import { sortPosts } from '../scripts/Utils.js';
+const { frontmatter } = Astro.props;
+
+const currentTags = frontmatter.tags;
+const allPosts = await getCollection('posts');
+const relatedPosts = sortPosts(allPosts).getRelatedPosts(currentTags);
+console.log(relatedPosts);
+const relatedSansCurrent = relatedPosts.filter(
+  (post) => post.data.title !== frontmatter.title
+);
+---
+
+<div class="mx-auto md:max-w-2xl bg-base-300 p-8 rounded flex flex-col gap-4">
+  <div class="md:text-3xl text-xl font-slab font-bold mb-8">Related Posts</div>
+  {
+    relatedSansCurrent.map((post) => (
+      <BlogLinkSimple
+        title={post.data.title}
+        description={post.data.description}
+        url={`/blog/${post.slug}`}
+        pubDate={post.data.pubDate}
+      />
+    ))
+  }
+</div>
+
+<script>
+  console.log('hello!');
+</script>
