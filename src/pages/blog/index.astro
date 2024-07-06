@@ -9,9 +9,6 @@ import { sortPosts } from '../../scripts/Utils.js';
 const allPosts = await getCollection('posts');
 const sortedPosts = sortPosts(allPosts).sortByDate();
 
-// const sortedPosts = allPosts.sort(
-//   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
-// );
 ---
 
 <Layout title="Crockett's Blog">

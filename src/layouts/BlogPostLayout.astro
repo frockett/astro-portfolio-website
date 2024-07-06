@@ -1,6 +1,7 @@
 ---
 import Image from 'astro/components/Image.astro';
 import Layout from './Layout.astro';
+import RelatedPostsBox from '../components/RelatedPostsBox.astro';
 const { frontmatter } = Astro.props;
 const hasImage = frontmatter.image ? true : false;
 ---
@@ -41,7 +42,9 @@ const hasImage = frontmatter.image ? true : false;
     class="mx-auto px-8  mb-32 max-w-4xl text-lg leading-8 font-sans rounded-md"
   >
     <slot />
-    <div class="flex justify-end"><a class="text-primary hover:underline font-semibold" href="/blog/">Return to blog</a></div>
-
+    <div class="flex justify-end mb-4"><a class="text-primary hover:underline font-semibold" href="/blog/">Return to blog</a></div>
+    <RelatedPostsBox frontmatter={frontmatter}></RelatedPostsBox>
   </div>
+
+  
 </Layout>
