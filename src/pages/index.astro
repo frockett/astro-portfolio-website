@@ -8,6 +8,7 @@ import shiftsGif from '../images/shifts-resized.gif';
 import FixedSocialsBox from '../components/FixedSocialsBox.astro';
 import backgroundImage from '../images/md-geometric-bg.jpg';
 import PortfolioItem from '../components/PortfolioItem.astro';
+import PortfolioCard from '../components/PortfolioCard.astro';
 import SocialIcon from '../components/SocialIcon.astro';
 const optimizedBgImage = await getImage({ src: backgroundImage });
 const opttimizedScraperPortImg = await getImage({ src: scraperPortImg });
@@ -91,6 +92,7 @@ const opttimizedScraperPortImg = await getImage({ src: scraperPortImg });
           {
             link: 'https://github.com/frockett/product-scraper',
             icon: 'bi:github',
+            ariaLabel: 'Github',
           },
         ]}
         imageSrc={scraperPortImg}
@@ -99,12 +101,13 @@ const opttimizedScraperPortImg = await getImage({ src: scraperPortImg });
       />
       <PortfolioItem
         projectTitle="Shift-Logger API"
-        projectDescription="A basic ASP.net Core Web API and a console app that consumes it. Log shifts and track employees."
+        projectDescription="An ASP.net Core Web API and a console app that consumes it. Log shifts and track employees."
         tagList={['.Net', 'Asp.Net Core', 'Web API', 'Swagger']}
         iconLinks={[
           {
             link: 'https://github.com/frockett/Console-ShiftTracker',
             icon: 'bi:github',
+            ariaLabel: 'Github',
           },
         ]}
         imageSrc={shiftsGif}
@@ -114,13 +117,57 @@ const opttimizedScraperPortImg = await getImage({ src: scraperPortImg });
     </ul>
   </div>
 
-  <!-- <div class="h-lvh w-screen">
-      <div
-        style={`background-image: url('${optimizedBgImage.src}')`}
-        class="bg-no-repeat bg-cover bg-fixed h-full"
-      >
-      </div>
-    </div> -->
+  <div
+    class="md:max-w-7xl grid sm:grid-cols-2 md:grid-cols-3 mx-auto gap-4 p-8 px-16 mb-16"
+    style="grid-auto-rows:1fr;"
+  >
+    <PortfolioCard
+      projectTitle="Phonebook App"
+      projectDescription="Use EF core and MSSQL Server to edit contacts and contact groups. Basic experiment with EF Core and relational databases."
+      tagList={['.Net', 'EF Core', 'MS SQL']}
+      iconLinks={[
+        {
+          link: 'https://github.com/frockett/Console-Phonebook',
+          icon: 'bi:github',
+          ariaLabel: 'Github',
+        },
+      ]}
+    />
+    <PortfolioCard
+      projectTitle="Excel Reader"
+      projectDescription="Read data from a spreadsheet into a database while logging to the console."
+      tagList={['.Net', 'EF Core', 'SQLite', 'EPPlus']}
+      iconLinks={[
+        {
+          link: 'https://github.com/frockett/Console-ExcelReader',
+          icon: 'bi:github',
+          ariaLabel: 'Github',
+        },
+      ]}
+    />
+    <PortfolioCard
+      projectTitle="Personal Website"
+      projectDescription="This website uses Astro, Tailwind CSS, and good-old HTML. It's lightning fast, too. Go ahead and check out the Lighthouse score ;)"
+      tagList={['Astro', 'Tailwind CSS', 'Web Design']}
+      iconLinks={[
+        {
+          link: 'https://github.com/frockett/astro-portfolio-website',
+          icon: 'bi:github',
+        },
+      ]}
+    />
+    <PortfolioCard
+      projectTitle="Sales Tracking Solution"
+      projectDescription="A simple console app solution I built for my wife's small business. Track sales, see monthly graphs, and more! Simple and light."
+      tagList={['.Net', 'EF Core', 'SQLite']}
+      iconLinks={[
+        {
+          link: 'https://github.com/frockett',
+          icon: 'bi:github',
+        },
+      ]}
+    />
+  </div>
 </Layout>
 
 <style>
