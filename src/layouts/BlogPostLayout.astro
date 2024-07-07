@@ -1,5 +1,6 @@
 ---
-import Image from 'astro/components/Image.astro';
+import {Image} from 'astro:assets';
+import {getImage} from 'astro:assets';
 import Layout from './Layout.astro';
 import RelatedPostsBox from '../components/RelatedPostsBox.astro';
 const { frontmatter } = Astro.props;
@@ -7,6 +8,9 @@ const hasImage = frontmatter.image ? true : false;
 ---
 
 <Layout title={frontmatter.title}>
+  <div class="sticky top-0 z-10 bg-base-200 h-2 flex">
+    <progress id="reading-progress-bar" class="progress progress-primary w-full bg-base-200" value="0" max="100"></progress>
+    </div>
   <div class="flex flex-shrink mx-4">
     {
       hasImage ? (
@@ -14,8 +18,9 @@ const hasImage = frontmatter.image ? true : false;
           class="mx-auto py-8"
           src={frontmatter.image.url}
           alt={frontmatter.image.alt}
+          inferSize
           width="1000"
-          height="1000"
+          quality="80"
         />
       ) : (
         ''
@@ -39,12 +44,34 @@ const hasImage = frontmatter.image ? true : false;
 
 
   <div
-    class="mx-auto px-8  mb-32 max-w-4xl text-lg leading-8 font-sans rounded-md"
+    class="mx-auto px-8 mb-32 max-w-4xl text-lg prose prose-h1:font-bold prose-h2:text-xl md:prose-h2:text-3xl prose-h3:text-lg md:prose-h3:text-xl leading-8 font-sans rounded-md"
   >
+
     <slot />
-    <div class="flex justify-end mb-4"><a class="text-primary hover:underline font-semibold" href="/blog/">Return to blog</a></div>
+    <div class="flex justify-end mb-8"><a class="text-primary-content hover:underline font-semibold" href="/blog/">Return to blog</a></div>
     <RelatedPostsBox frontmatter={frontmatter}></RelatedPostsBox>
   </div>
 
+  <script>
+  // Function to update the progress bar
+  function updateProgressBar() {
+    const progressBar = document.getElementById('reading-progress-bar');
+    const scrollTop = window.scrollY; // Current vertical scroll position
+    const documentHeight = document.documentElement.scrollHeight; // Total height of the document
+    const windowHeight = window.innerHeight; // Height of the visible window
+
+    // Calculate the total scrollable height
+    const scrollableHeight = documentHeight - windowHeight;
+
+    // Calculate the scroll progress in percentage
+    const scrollProgress = (scrollTop / scrollableHeight) * 100;
+
+    // Update the value of the progress bar
+    progressBar.value = scrollProgress;
+  }
+
+  // Attach the updateProgressBar function to the scroll event
+  window.addEventListener('scroll', updateProgressBar);
+</script>
   
 </Layout>
