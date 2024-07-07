@@ -4,6 +4,12 @@ import { Icon } from 'astro-icon/components';
 const { link, icon, size = 20, ariaLabel } = Astro.props;
 ---
 
-<a class="social-link" href={`${link}`}>
-  <Icon class="transition hover:text-primary" size={size} name={icon} aria-label={ariaLabel} />
+<a
+  class="social-link"
+  href={`${link}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={ariaLabel}
+>
+  <Icon class="transition hover:text-primary" size={size} name={icon} />
 </a>
