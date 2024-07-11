@@ -47,7 +47,13 @@ const opttimizedScraperPortImg = await getImage({ src: scraperPortImg });
       data-aos="fade-left"
       class="mask mask-parallelogram-3 w-1/2 md:w-9/12 mx-auto [grid-area:image]"
     >
-      <Image src={localBioPhoto} alt="A portrait of Crockett" class="" />
+      <Image
+        src={localBioPhoto}
+        inferSize
+        quality={70}
+        alt="A portrait of Crockett"
+        class=""
+      />
     </div>
 
     <div class="[grid-area:para] my-auto flex flex-col gap-8 pr-8 text-lg">
