@@ -1,10 +1,15 @@
 ---
 import {Image} from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import {getImage} from 'astro:assets';
 import Layout from './Layout.astro';
 import RelatedPostsBox from '../components/RelatedPostsBox.astro';
+import { imageMetadata } from 'astro/assets/utils';
 const { frontmatter } = Astro.props;
 const hasImage = frontmatter.image ? true : false;
+
+const images = import.meta.glob<{default: ImageMetadata}>('/src/images/*.{jpeg,jpg,png,gif}');
+console.log(images);
 ---
 
 <Layout title={frontmatter.title}>
@@ -14,14 +19,14 @@ const hasImage = frontmatter.image ? true : false;
   <div class="flex flex-shrink mx-4">
     {
       hasImage ? (
+        <div class="max-w-[1000px] mx-auto">
         <Image
           class="mx-auto py-8"
-          src={frontmatter.image.url}
+          src={images[frontmatter.image.url]()}
           alt={frontmatter.image.alt}
           inferSize
-          width="1000"
-          quality="80"
         />
+        </div>
       ) : (
         ''
       )

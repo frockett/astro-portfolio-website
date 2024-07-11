@@ -4,7 +4,7 @@ pubDate: 2024-07-07
 description: 'How much does a one-bedroom apartment in Austin cost nowadays?'
 author: Crockett
 image:
-    url: 'https://i.imgur.com/SJLun1J.png' 
+    url: '/src/images/office-space-printer.png' 
     alt: 'a still from the scene where they smash the printer'
 tags: ["movies", "culture"]
 ---
