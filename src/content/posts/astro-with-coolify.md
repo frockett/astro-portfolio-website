@@ -19,11 +19,11 @@ Let's get to it.
 
 In the Coolify projects menu, create a new project and name it something memorable.
 
-![An example project](../../images/coolify-astro-tut/create-project.png)
+![An example project](../../images/create-project.png)
 
 The project will open automatically. Enter the default production environment and click the button to add a resource. I'll be adding from a public repository (the one for this website), but private GitHub repositories work and support push to deploy out of the gate with a GitHub app.
 
-![The resource selection screen](../../images/coolify-astro-tut/resource-selection.png)
+![The resource selection screen](../../images/resource-selection.png)
 
 Next, you will be prompted to select which Coolify-managed server you want to deploy to. After that, you will enter the URL for the Git repo that you want to deploy from.
 
@@ -35,17 +35,17 @@ Once you've entered your repo's URL and checked the repository, some additional 
 
 There is a checkbox asking 'Is it a static site?' that needs our attention.
 
-![screenshot of the deployment config with static site not selected](../../images/coolify-astro-tut/buildpack-selection.png)
+![screenshot of the deployment config with static site not selected](../../images/buildpack-selection.png)
 
 We're going to check that box for now since Astro is, by default, a static site generator. Selecting it will make a couple changes automatically.
 
 Let's take a look at what happened after we changed it.
 
-![screenshot of the deployment config with the static site box checked](../../images/coolify-astro-tut/buildpack-with-static-selected.png)
+![screenshot of the deployment config with the static site box checked](../../images/buildpack-with-static-selected.png)
 
 As you can see, a couple things have happened. The port has been changed to 80 and there is now a field for the root and publish directories containing '/' and '/dist' by default. Since 80 is a common port for HTTP and HTTPS traffic, and Astro's build directory is also /dist by default, it means we're good to go! Continue and now you'll see the larger, more complex configuration screen.
 
-![The configuration panel](../../images/coolify-astro-tut/config-panel.png)
+![The configuration panel](../../images/config-panel.png)
 
 Assuming you have your domain and DNS records set up correctly, you'll want to write your full domain in the domains box, then ensure that the publish directory and exposed ports are correctly filled in. 
 
