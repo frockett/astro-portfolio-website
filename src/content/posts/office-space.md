@@ -6,7 +6,7 @@ author: Crockett
 image:
     url: '/src/images/office-space-printer.png' 
     alt: 'a still from the scene where they smash the printer'
-tags: ["movies", "culture"]
+tags: ["movies", "culture", "essay"]
 ---
 ## Whose nightmare?
 

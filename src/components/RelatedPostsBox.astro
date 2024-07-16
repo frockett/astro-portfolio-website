@@ -24,6 +24,7 @@ const relatedSansCurrent = relatedPosts.filter(
           title={post.data.title}
           url={`/blog/${post.slug}`}
           pubDate={post.data.pubDate}
+          tags={post.data.tags}
         />
       ))}
     </div>

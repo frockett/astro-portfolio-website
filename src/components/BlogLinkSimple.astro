@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-const { title, url, description, pubDate } = Astro.props;
+const { title, url, description, pubDate, tags } = Astro.props;
 ---
 
 <li class="flex flex-col">
@@ -12,4 +12,11 @@ const { title, url, description, pubDate } = Astro.props;
     >
   </div>
   <div class="mt-1">{description}</div>
+  <div class="flex gap-2 items-center justify-start mt-2 flex-wrap">
+    {tags.map((tag) => (
+    <a href=`/blog/tags/${tag}`>
+      <p class="transition border-dotted border-2 border-primary hover:bg-primary rounded-full p-1 px-2 sm:text-sm text-xs font-semibold hover:text-white w-max hover:underline">{tag}</p>
+    </a>
+  ))}
+</div>
 </li>
