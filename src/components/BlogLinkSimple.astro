@@ -12,10 +12,10 @@ const { title, url, description, pubDate, tags } = Astro.props;
     >
   </div>
   <div class="mt-1">{description}</div>
-  <div class="flex gap-2 items-center justify-start mt-2 flex-wrap">
+  <div class="flex gap-2 items-center justify-start flex-wrap mt-2">
     {tags.map((tag) => (
     <a href=`/blog/tags/${tag}`>
-      <p class="transition border-dotted border-2 border-primary hover:bg-primary rounded-full p-1 px-2 sm:text-sm text-xs font-semibold hover:text-white w-max hover:underline">{tag}</p>
+      <p class="transition border-dotted border-2 m-0 border-primary hover:bg-primary rounded-full p-1 px-2 sm:text-sm text-xs font-semibold hover:text-white w-max hover:underline">{tag}</p>
     </a>
   ))}
 </div>

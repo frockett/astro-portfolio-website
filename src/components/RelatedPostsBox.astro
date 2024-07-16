@@ -15,8 +15,8 @@ const relatedSansCurrent = relatedPosts.filter(
 
 {
   relatedSansCurrent.length > 0 && (
-    <div class="mx-auto md:max-w-2xl bg-base-300 p-8 rounded flex flex-col gap-4">
-      <div class="md:text-3xl text-xl font-slab font-bold mb-8">
+    <div class="mx-auto md:max-w-2xl bg-base-300 p-8 rounded flex flex-col gap-2">
+      <div class="md:text-3xl text-xl font-slab font-bold mb-4">
         Related Posts
       </div>
       {relatedSansCurrent.map((post) => (
@@ -30,6 +30,3 @@ const relatedSansCurrent = relatedPosts.filter(
     </div>
   )
 }
-<script>
-  console.log('hello!');
-</script>
