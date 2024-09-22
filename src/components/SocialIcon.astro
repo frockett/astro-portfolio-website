@@ -10,6 +10,7 @@ const { link, icon, size = 20, ariaLabel } = Astro.props;
   target="_blank"
   rel="noopener noreferrer"
   aria-label={ariaLabel}
+  data-umami-event=`${link} clicked`
 >
   <Icon class="transition hover:text-primary" size={size} name={icon} />
 </a>
