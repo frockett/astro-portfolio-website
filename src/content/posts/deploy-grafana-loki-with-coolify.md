@@ -12,7 +12,9 @@ There are a few options for a log monitoring stack out there, with even more opt
 
 However, the basic structure of any log monitoring solution looks like this: 
 
-<Image src="/src/images/log-gathering-diagram.png" alt="a diagram showing the flow of log monitoring, from an app node to a log aggregator to a UI for viewing logs" inferSize/>
+<!-- <Image src="/src/images/log-gathering-diagram.png" alt="a diagram showing the flow of log monitoring, from an app node to a log aggregator to a UI for viewing logs" inferSize/> -->
+
+![a diagram showing the flow of log monitoring, from an app node to a log aggregator to a UI for viewing logs](../../images/log-gathering-diagram.png)
 
 1. App nodes produce logs
 2. An aggregator collects the logs, indexes them, attaches relevant metadata, and prepares them to be queried
@@ -25,16 +27,16 @@ As I prepare to launch my first production app, I thought it prudent to get a ba
 - *Lets me view all logs (from the backend API and the website itself) in a centralized place and set alerts for certain events.*
 - *Runs on a modestly-priced VPS--specifically a Hetzner CPX21 with 4GB RAM*
 
-The last two requirements are what we'll be addressing today. They're a tricky pair. A solution like Logstash, part of the ELK stack, has a default heap size of 1GB <a href="https://stackoverflow.com/questions/62049858/how-much-cpu-memory-storage-at-least-i-need-to-use-elk">according to this answer on stackoverflow</a>. While that's not too big, I want to keep the resource usage as low as possible because I will be running a number of other services on the same VPS.
+The last two requirements are what we'll be addressing today. They're a tricky pair. A solution like Logstash, part of the ELK stack, has a default heap size of 1GB <a href="https://stackoverflow.com/questions/62049858/how-much-cpu-memory-storage-at-least-i-need-to-use-elk" target="_blank">according to this answer on stackoverflow</a>. While that's not too big, I want to keep the resource usage as low as possible because I will be running a number of other services on the same VPS.
 
-I ended up deciding to go with <a href="https://github.com/grafana/loki">Loki</a>, from the creators of Grafana (which I will use for the UI dashboard). Loki is extremely resource efficient, open-source, and free. All three are also true for the Grafana Dashboard. 
+I ended up deciding to go with <a href="https://github.com/grafana/loki" target="_blank">Loki</a>, from the creators of Grafana (which I will use for the UI dashboard). Loki is extremely resource efficient, open-source, and free. All three are also true for the Grafana Dashboard. 
 
 The highly-modular nature of Grafana means that I can set up Loki for logs now, connect them, and continue to add components to my monitoring stack which operate independently of each other. This flexibility is very appealing to me, and it means my stack can grow when it needs to, not before.
 
 ## Installing Grafana and Loki with Coolify
 I've written about how I [use Coolify](/blog/astro-with-coolify) to host my personal website. I use Coolify to manage almost all of my servers. I'll be using it again to deploy my monitoring stack.
 
-Deploying Grafana with Coolify is dead simple, since it is one of the services [available for one-click setup](https://coolify.io/docs/services/grafana/) in the Coolify UI. Just create your project, add a resource, and find Grafana in the list of available services. Set the empty password fields with a secure password. Assign a domain to it and you're good to go. I've chosen to install Grafana with Postgresql, although to be quite honest with you, I'm not totally sure whether that or the simple Grafana one-click setup option is better. 
+Deploying Grafana with Coolify is dead simple, since it is one of the services <a href="https://coolify.io/docs/services/grafana/" target="_blank">available for one-click setup</a> in the Coolify UI. Just create your project, add a resource, and find Grafana in the list of available services. Set the empty password fields with a secure password. Assign a domain to it and you're good to go. I've chosen to install Grafana with Postgresql, although to be quite honest with you, I'm not totally sure whether that or the simple Grafana one-click setup option is better. 
 
 Either way, that is why you'll see some references and environment variables for Postgres below. You can safely ignore them if you aren't using Postgres.
 
@@ -139,16 +141,18 @@ Our attention belongs down here:
 
 First, we're pulling the official Loki image. Then, we're telling Loki to look for its config file at `/etc/loki/loki-config.yaml`. We've then configured an appropriate healthcheck.
 
-Second, we're installing Nginx. We're installing Nginx because [Loki does not come with authentication](https://grafana.com/docs/loki/latest/operations/authentication/). We'll be using Nginx to implement HTTP basic auth according to the Nginx [docs](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/). 
+Second, we're installing Nginx. We're installing Nginx because <a href="https://grafana.com/docs/loki/latest/operations/authentication/" target="_blank">Loki does not come with authentication</a>. We'll be using Nginx to implement HTTP basic auth according to the Nginx <a href="https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/" target="_blank">docs</a>. 
 
 Of course, Traefik already acts as a reverse proxy for our Coolify-managed server. Fortunately, this simplifies things instead of complicating them. 
 
-In the Nginx section of the compose file, you can see that we're mounting an `nginx.conf`, a `nginx/conf.d/loki.conf`, and a `.htpasswd` file. The file can be generated by following the [instructions](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/#creating-a-password-file) in the Nginx guide. Save the username and password you generated somewhere, since we will need it to connect log scraping tools like Promtail with Loki later.
+In the Nginx section of the compose file, you can see that we're mounting an `nginx.conf`, a `nginx/conf.d/loki.conf`, and a `.htpasswd` file. The file can be generated by following the <a href="https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/#creating-a-password-file" target="_blank">instructions</a> in the Nginx guide. Save the username and password you generated somewhere, since we will need it to connect log scraping tools like Promtail with Loki later.
 
 ### Setting up the config files
 Once you've saved your compose file, Coolify will automatically generate fields for you to add the configurations for both Loki and Nginx, which can be found in the `Storages` tab on the lefthand side of the resource menu, here: 
 
-<Image class="" src="/src/images/storages-menu.png" alt="A screenshot of the Storages menu in the Coolify service configuration menu" inferSize/>
+<!-- <Image class="" src="/src/images/storages-menu.png" alt="A screenshot of the Storages menu in the Coolify service configuration menu" inferSize/> -->
+
+![A screenshot of the Storages menu in the Coolify service configuration menu](../../images/storages-menu.png)
 
 Here are the contents of my loki-config.yaml: 
 ```
@@ -289,7 +293,7 @@ Connection is dead simple, since Grafana and Loki are running in the same docker
 ## What now?
 
 ### Get logs using Promtail
-Now that we've got the basic stack set up, we obviously need to start feeding logs to Loki for processing with Grafana. There are plenty of guides for setting up Promtail and connecting it to Loki, but [installing Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/installation/) via your package manager might be the most straight-forward option, and it's the one I went with for testing it on my home machine.
+Now that we've got the basic stack set up, we obviously need to start feeding logs to Loki for processing with Grafana. There are plenty of guides for setting up Promtail and connecting it to Loki, but <a href="https://grafana.com/docs/loki/latest/send-data/promtail/installation/" target="_blank">installing Promtail</a> via your package manager might be the most straight-forward option, and it's the one I went with for testing it on my home machine.
 
 Without getting into too much depth, here is my Promtail config for testing it on a project on my home machine: 
 
@@ -331,4 +335,4 @@ This config is set to scrape the logs from an Asp.Net Core project that I'm work
 As a tip, you can go to `loki.example.dev/metrics`, enter your auth information, and see what Loki's up to in order to check if your logs are being received.
 
 ### Create panels
-This is beyond the scope of this article--which is getting pretty long--but once you've generated and aggregated some logs, it's time to start querying them. I'll leave the details to the experts, but I suggest you start by reading [this blog article](https://grafana.com/blog/2023/05/18/6-easy-ways-to-improve-your-log-dashboards-with-grafana-and-grafana-loki/) from Grafana Labs, which has a number of suggestions for setting up a useful log dashboard.
+This is beyond the scope of this article--which is getting pretty long--but once you've generated and aggregated some logs, it's time to start querying them. I'll leave the details to the experts, but I suggest you start by reading <a href="https://grafana.com/blog/2023/05/18/6-easy-ways-to-improve-your-log-dashboards-with-grafana-and-grafana-loki/" target="_blank">this blog article</a> from Grafana Labs, which has a number of suggestions for setting up a useful log dashboard.
