@@ -1,4 +1,6 @@
 ---
+import TopArticlesCards from './TopArticlesCards.astro';
+import TopArticlesLoader from './TopArticlesLoader.astro';
 import { Icon } from 'astro-icon/components';
 import { dbClient } from '../lib/db';
 import { Views } from '../lib/schema';
@@ -37,7 +39,7 @@ const enrichedArticles = topArticles.map((article) => ({
 <div class="container mx-auto xl:w-3/5 py-6">
   <h2 class="text-2xl pb-6 font-bold font-sans">Featured Posts</h2>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 place-items-center">
-    {
+    <!-- {
       enrichedArticles.map((article) => (
         <a
           href={`/blog/${article.slug}`}
@@ -59,7 +61,10 @@ const enrichedArticles = topArticles.map((article) => ({
           </div>
         </a>
       ))
-    }
+    } -->
+    <TopArticlesCards server:defer>
+      <TopArticlesLoader slot="fallback" />
+    </TopArticlesCards>
   </div>
   <div class="mt-6">
     <a class="font-semibold hover:text-primary transition-all" href="/blog/"
@@ -67,26 +72,3 @@ const enrichedArticles = topArticles.map((article) => ({
     >
   </div>
 </div>
-
-<style>
-  /* Define a custom class for the gradient shadow effect */
-  .card-gradient-shadow {
-    position: relative;
-    z-index: 0;
-    background-color: white;
-    border-radius: 0.5rem; /* rounded-lg */
-    overflow: hidden;
-  }
-  .card-gradient-shadow::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0));
-    filter: blur(8px);
-    z-index: -1;
-    border-radius: inherit;
-  }
-</style>

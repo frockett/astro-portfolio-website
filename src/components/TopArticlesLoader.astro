@@ -1,0 +1,24 @@
+{
+  Array.from({ length: 3 }).map((_, i) => (
+    <a
+      key={i}
+      class="border transition-all border-b-4 border-r-4 rounded-lg p-4 place-self-stretch overflow-hidden h-32 md:h-52 flex flex-col gap-4 justify-between animate-pulse"
+    >
+      <div class="space-y-4">
+        {/* Placeholder for the title */}
+        <div class="h-6 w-full rounded bg-neutral-content animate-pulse" />
+        <div class="h-6 w-full rounded bg-neutral-content animate-pulse" />
+      </div>
+      <div class="flex w-full justify-between">
+        <div class="inline-flex relative gap-2 items-center">
+          {/* Placeholder for the eye icon */}
+          <div class="h-[25px] w-[25px] rounded bg-neutral-content" />
+          {/* Placeholder for the view count */}
+          <div class="h-4 w-8 rounded bg-neutral-content" />
+        </div>
+        {/* Placeholder for the publication date */}
+        <div class="h-4 w-16 rounded bg-neutral-content" />
+      </div>
+    </a>
+  ))
+}

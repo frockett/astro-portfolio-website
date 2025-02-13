@@ -1,0 +1,61 @@
+---
+import { Icon } from 'astro-icon/components';
+import { dbClient } from '../lib/db';
+import { Views } from '../lib/schema';
+import { getCollection } from 'astro:content';
+
+// await new Promise((resolve) => setTimeout(resolve, 20000)); // 20-second delay
+
+const topArticles = await dbClient
+  .select({
+    slug: Views.slug,
+    count: Views.count,
+  })
+  .from(Views)
+  .orderBy(Views.count, 'desc')
+  .limit(3);
+
+console.log(topArticles);
+
+const blogEntries = await getCollection('posts');
+
+const postsMap = blogEntries.reduce((acc, entry) => {
+  acc[entry.slug] = {
+    title: entry.data.title,
+    description: entry.data.description,
+    pubDate: entry.data.pubDate,
+  };
+  return acc;
+}, {});
+
+const enrichedArticles = topArticles.map((article) => ({
+  ...article,
+  title: postsMap[article.slug].title || article.slug,
+  description: postsMap[article.slug]?.description,
+  pubDate: postsMap[article.slug]?.pubDate,
+}));
+---
+
+{
+  enrichedArticles.map((article) => (
+    <a
+      href={`/blog/${article.slug}`}
+      class="border group hover:border-primary transition-all hover:shadow-md hover:shadow-primary border-b-4 border-r-4 rounded-lg p-4 place-self-stretch overflow-hidden h-32 md:h-52 flex flex-col gap-4 justify-between"
+    >
+      <div class="space-y-4">
+        <p class="text-lg lg:text-xl font-bold font-sans text-pretty group-hover:text-primary-content transition-colors">
+          {article.title}
+        </p>
+      </div>
+      <div class="flex w-full justify-between">
+        <div class="inline-flex relative gap-2">
+          <Icon name="bi:eye" size={25} />
+          <span>{article.count}</span>
+        </div>
+        <span class="text-sm text-neutral-400">
+          {article.pubDate.toLocaleDateString()}
+        </span>
+      </div>
+    </a>
+  ))
+}
