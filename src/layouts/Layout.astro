@@ -32,6 +32,10 @@ const { title } = Astro.props;
         localStorage.setItem('theme', theme);
       } catch (e) {}
     </script>
+    <script>
+      import { Observer } from 'tailwindcss-intersect';
+      Observer.start();
+    </script>
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
@@ -54,12 +58,6 @@ const { title } = Astro.props;
       <slot />
     </main>
     <Footer />
-
-    <script>
-      import AOS from 'aos';
-      import 'aos/dist/aos.css';
-      AOS.init();
-    </script>
 
     <style>
       :global(html) {

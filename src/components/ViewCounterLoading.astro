@@ -1,0 +1,16 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<div class="inline-flex gap-2 items-center">
+  <div class="tooltip tooltip-primary tooltip-bottom" data-tip="View count">
+    <Icon name="bi:eye" size={25} />
+  </div>
+  <span class="animate-pulse text-xl">...</span>
+</div>
+
+<style>
+  .tooltip-primary {
+    --tooltip-text-color: white;
+  }
+</style>
