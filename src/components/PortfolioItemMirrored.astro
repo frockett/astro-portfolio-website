@@ -13,45 +13,55 @@ const {
 } = Astro.props;
 ---
 
-<li class=" md:py-12 w-full mx-auto xl:pr-64 intersect:motion-preset-blur-left motion-duration-1000">
+<li
+  class=" md:py-12 xl:pl-64 w-full mx-auto intersect:motion-preset-blur-right motion-duration-1000"
+>
   <div
-    class="grid mx-auto w-full md:max-w-4xl items-center grid-cols-12 grid-rows-3 md:grid-rows-2 max-h-min"
+    class="grid mx-auto w-full md:max-w-4xl items-center grid-cols-12 grid-rows-3 md:grid-rows-2"
   >
+    <!-- Mirrored text container (now left aligned) -->
     <div
-      class="flex justify-end flex-col gap-4 items-end col-start-2 col-end-13 md:col-start-6 md:col-end-13 row-start-2 row-end-4 md:row-start-1 md:row-end-3 z-10"
+      class="flex justify-start flex-col gap-4 items-start col-start-1 col-end-12 md:col-start-1 md:col-end-8 row-start-2 row-end-4 md:row-start-1 md:row-end-3 z-10"
     >
       <h3
         class="font-sans font-bold text-2xl bg-primary p-2 text-white md:bg-none"
       >
         {projectTitle}
       </h3>
-      <div class="bg-primary font-sans text-white font-semibold md:min-h-24 p-4 md:max-w-md">
+      <div
+        class="bg-primary font-sans text-white font-semibold md:min-h-24 p-4 md:max-w-md"
+      >
         {projectDescription}
       </div>
-      <ul class="flex flex-wrap justify-end">
+      <ul class="flex flex-wrap justify-start">
         {
           tagList.map((tag) => (
-            <li class="block text-nowrap ml-2 mb-2 sm:ml-4 bg-primary text-s sm:text-base px-2 text-white">
+            <li class="block text-nowrap mr-2 mb-2 sm:mr-4 bg-primary text-s sm:text-base px-2 text-white">
               {tag}
             </li>
           ))
         }
       </ul>
-      <div class="links flex gap-4 justify-end">
+      <div class="links flex gap-4 justify-start">
         {
           iconLinks.map((icon) => (
-            <SocialIcon link={icon.link} icon={icon.icon} size={icon.size ?? 30} />
+            <SocialIcon
+              link={icon.link}
+              icon={icon.icon}
+              size={icon.size ?? 30}
+            />
           ))
         }
       </div>
     </div>
+    <!-- Mirrored image container (now on the right) -->
     <a
-      class="min-w-[250px] col-start-1 col-end-12 md:col-end-10 row-start-1 row-end-3"
+      class="min-w-300px col-start-2 col-end-13 md:col-start-4 md:col-end-13 row-start-1 row-end-3"
       href={imageLink}
-      data-aos="fade-right"
+      data-aos="fade-left"
     >
       <div
-        class="wrap h-auto col-start-1 col-end-12 md:col-end-10 row-start-1 row-end-3"
+        class="wrap h-auto col-start-2 col-end-13 md:col-start-4 md:col-end-13 row-start-1 row-end-3"
       >
         <Image
           class="opacity-90 hue-rotate-30 rounded"
@@ -67,7 +77,6 @@ const {
 
 <style>
   .wrap {
-    /* min-width: 300px; */
     width: 100%;
     position: relative;
   }
@@ -78,12 +87,10 @@ const {
     left: 0;
     width: 100%;
     height: 100%;
-    /* background: #4EA699; */
     background: gray;
     opacity: 0.4;
     transition: 150ms ease-in-out;
   }
-
   .wrap:hover:after {
     background: none;
   }

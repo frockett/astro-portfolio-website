@@ -7,7 +7,7 @@ const { frontmatter } = Astro.props;
 const currentTags = frontmatter.tags;
 const allPosts = await getCollection('posts');
 const relatedPosts = sortPosts(allPosts).getRelatedPosts(currentTags);
-console.log(relatedPosts);
+// console.log(relatedPosts);
 const relatedSansCurrent = relatedPosts.filter(
   (post) => post.data.title !== frontmatter.title
 );

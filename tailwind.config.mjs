@@ -14,7 +14,12 @@ export default {
       },
     },
   },
-  plugins: [require('daisyui'), require('@tailwindcss/typography')],
+  plugins: [
+    require('daisyui'),
+    require('@tailwindcss/typography'),
+    require('tailwindcss-intersect'),
+    require('tailwindcss-motion'),
+  ],
   daisyui: {
     themes: [
       {

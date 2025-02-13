@@ -1,0 +1,49 @@
+---
+import { Image } from 'astro:assets';
+import TopArticles from './TopArticles.astro';
+
+import localBioPhoto from '../images/portrait-danielle-2022.jpg';
+---
+
+<section class="max-w-7xl container mx-auto px-6">
+  <div
+    class="grid grid-cols-1 py-10 lg:py-20 md:grid-cols-2 lg:gap-8 place-items-center"
+  >
+    <div class="space-y-8 pb-6">
+      <h1
+        class="font-slab motion-preset-blur-right text-5xl mb-10 lg:text-6xl font-extrabold"
+      >
+        Crockett Ford
+      </h1>
+      <div class="motion-preset-blur-right space-y-4 sm:text-lg text-pretty">
+        <p class="font-sans">
+          I'm a <strong>developer</strong> who makes <strong>end-to-end</strong>
+          apps, tools, websites and more. If you're here to see what I can do, take
+          a look at some of my <a
+            class="text-primary-content font-semibold underline hover:text-primary transition-colors"
+            href="#work">work</a
+          > below.
+        </p>
+        <p>
+          I'm comfortable working in the backend with C# and .Net or in the
+          front-end using a variety of technologies, but especially Jamstack
+          frameworks like Astro and UI frameworks like Svelte.
+        </p>
+        <p class="font-sans">
+          Sometimes I post to my <a
+            class="text-primary-content font-semibold underline hover:text-primary transition-colors"
+            href="/blog/">blog</a
+          >, where I write about self-hosting, document projects I'm working on,
+          or rant about movies and books.
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="mask motion-preset-blur-left mask-circle w-9/12 md:w-8/12 mx-auto"
+    >
+      <Image src={localBioPhoto} alt="A portrait of Crockett" class="" />
+    </div>
+  </div>
+  <TopArticles />
+</section>

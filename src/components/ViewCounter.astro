@@ -1,0 +1,41 @@
+---
+import { Icon } from 'astro-icon/components';
+import { dbClient } from '../lib/db';
+import { Views } from '../lib/schema';
+import { sql } from 'drizzle-orm';
+
+const { slug } = Astro.props;
+let item;
+
+try {
+  // Upsert: insert a new row (with count 1) or, if it exists, increment the count.
+  item = await dbClient
+    .insert(Views)
+    .values({ slug, count: 1 })
+    .onConflictDoUpdate({
+      target: Views.slug,
+      set: { count: sql`count + 1` },
+    })
+    .returning({
+      slug: Views.slug,
+      count: Views.count,
+    })
+    .then((res) => res[0]);
+} catch (error) {
+  console.error(error);
+  item = { slug, count: 1 };
+}
+---
+
+<div class="inline-flex gap-2 items-center">
+  <div class="tooltip tooltip-primary tooltip-bottom" data-tip="View count">
+    <Icon name="bi:eye" size={25} />
+  </div>
+  <span>{item.count}</span>
+</div>
+
+<style>
+  .tooltip-primary {
+    --tooltip-text-color: white;
+  }
+</style>
