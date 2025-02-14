@@ -1,6 +1,10 @@
 # build output
 dist/
 
+#db
+.db 
+.db-*
+
 # generated types
 .astro/
 
