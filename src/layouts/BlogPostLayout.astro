@@ -6,6 +6,7 @@ import Layout from './Layout.astro';
 import RelatedPostsBox from '../components/RelatedPostsBox.astro';
 import ViewCounter from '../components/ViewCounter.astro';
 import ViewCounterLoading from '../components/ViewCounterLoading.astro';
+import PostComments from '../components/PostComments.astro';
 import { imageMetadata } from 'astro/assets/utils';
 const { frontmatter } = Astro.props;
 const hasImage = frontmatter.image ? true : false;
@@ -60,6 +61,7 @@ const slug = Astro.params.slug;
     <slot />
     <div class="flex justify-end mb-8"><a class="text-primary-content hover:underline font-semibold" href="/blog/">Return to blog</a></div>
     <RelatedPostsBox frontmatter={frontmatter}></RelatedPostsBox>
+    <PostComments></PostComments>
   </div>
 
   <script>
