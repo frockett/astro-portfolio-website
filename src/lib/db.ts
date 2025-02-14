@@ -6,6 +6,5 @@ const sqliteDB = new Database('./data/astro.db', {
   // You can add options like { verbose: console.log } for debugging
 });
 
-
 // Initialize Drizzle ORM with your connection
 export const dbClient = drizzle(sqliteDB);
