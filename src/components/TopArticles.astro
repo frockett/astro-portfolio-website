@@ -2,66 +2,11 @@
 import TopArticlesCards from './TopArticlesCards.astro';
 import TopArticlesLoader from './TopArticlesLoader.astro';
 import { Icon } from 'astro-icon/components';
-import { dbClient } from '../lib/db';
-import { Views } from '../lib/schema';
-import { getCollection } from 'astro:content';
-
-const topArticles = await dbClient
-  .select({
-    slug: Views.slug,
-    count: Views.count,
-  })
-  .from(Views)
-  .orderBy(Views.count, 'desc')
-  .limit(3);
-
-console.log(topArticles);
-
-const blogEntries = await getCollection('posts');
-
-const postsMap = blogEntries.reduce((acc, entry) => {
-  acc[entry.slug] = {
-    title: entry.data.title,
-    description: entry.data.description,
-    pubDate: entry.data.pubDate,
-  };
-  return acc;
-}, {});
-
-const enrichedArticles = topArticles.map((article) => ({
-  ...article,
-  title: postsMap[article.slug].title || article.slug,
-  description: postsMap[article.slug]?.description,
-  pubDate: postsMap[article.slug]?.pubDate,
-}));
 ---
 
-<div class="container mx-auto xl:w-3/5 py-6">
+<div class="container mx-auto xl:w-3/5 py-6 px-8 max-md:px-4 mb-10 border rounded-xl">
   <h2 class="text-2xl pb-6 font-bold font-sans">Featured Posts</h2>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 place-items-center">
-    <!-- {
-      enrichedArticles.map((article) => (
-        <a
-          href={`/blog/${article.slug}`}
-          class="border group hover:border-primary transition-all hover:shadow-md hover:shadow-primary border-b-4 border-r-4 rounded-lg p-4 place-self-stretch overflow-hidden min-h-40 flex flex-col gap-4 justify-between"
-        >
-          <div class="space-y-4">
-            <p class="text-xl font-bold font-sans text-pretty group-hover:text-primary-content transition-colors">
-              {article.title}
-            </p>
-          </div>
-          <div class="flex w-full justify-between">
-            <div class="inline-flex relative gap-2">
-              <Icon name="bi:eye" size={25} />
-              <span>{article.count}</span>
-            </div>
-            <span class="text-sm text-neutral-400">
-              {article.pubDate.toLocaleDateString()}
-            </span>
-          </div>
-        </a>
-      ))
-    } -->
     <TopArticlesCards server:defer>
       <TopArticlesLoader slot="fallback" />
     </TopArticlesCards>

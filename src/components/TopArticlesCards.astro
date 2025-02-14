@@ -2,22 +2,31 @@
 import { Icon } from 'astro-icon/components';
 import { dbClient } from '../lib/db';
 import { Views } from '../lib/schema';
+import { desc, eq } from 'drizzle-orm';
 import { getCollection } from 'astro:content';
 
-// await new Promise((resolve) => setTimeout(resolve, 20000)); // 20-second delay
+await new Promise((resolve) => setTimeout(resolve, 750)); // sub 1-second delay for smoothness
 
-const topArticles = await dbClient
+// Query view count from db
+let popularArticles = await dbClient
   .select({
     slug: Views.slug,
     count: Views.count,
   })
   .from(Views)
-  .orderBy(Views.count, 'desc')
+  .orderBy(desc(Views.count))
   .limit(3);
 
-console.log(topArticles);
-
 const blogEntries = await getCollection('posts');
+
+const sortedEntries = blogEntries.sort(
+  (a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate)
+);
+let newestPost = sortedEntries[0];
+
+popularArticles = popularArticles
+  .filter((article) => article.slug !== newestPost.slug)
+  .slice(0, 2);
 
 const postsMap = blogEntries.reduce((acc, entry) => {
   acc[entry.slug] = {
@@ -28,22 +37,41 @@ const postsMap = blogEntries.reduce((acc, entry) => {
   return acc;
 }, {});
 
-const enrichedArticles = topArticles.map((article) => ({
-  ...article,
-  title: postsMap[article.slug].title || article.slug,
-  description: postsMap[article.slug]?.description,
-  pubDate: postsMap[article.slug]?.pubDate,
-}));
+const newestCount = await dbClient
+  .select({
+    count: Views.count,
+  })
+  .from(Views)
+  .where(eq(Views.slug, newestPost.slug))
+  .then((res) => res[0].count);
+
+const enrichedArticles = [
+  {
+    slug: newestPost.slug,
+    title: newestPost.data.title,
+    description: newestPost.data.description,
+    pubDate: newestPost.data.pubDate,
+    count: newestCount,
+  },
+  ...popularArticles.map((article) => ({
+    slug: article.slug,
+    title: postsMap[article.slug]?.title || article.slug,
+    description: postsMap[article.slug]?.description,
+    pubDate: postsMap[article.slug]?.pubDate,
+    count: article.count,
+  })),
+];
+
 ---
 
 {
   enrichedArticles.map((article) => (
     <a
       href={`/blog/${article.slug}`}
-      class="border group hover:border-primary transition-all hover:shadow-md hover:shadow-primary border-b-4 border-r-4 rounded-lg p-4 place-self-stretch overflow-hidden h-32 md:h-52 flex flex-col gap-4 justify-between"
+      class="border group hover:border-primary transition-all hover:shadow-md hover:shadow-primary border-b-4 border-r-4 rounded-lg p-4 place-self-stretch overflow-hidden h-36 md:h-52 flex flex-col gap-4 justify-between"
     >
       <div class="space-y-4">
-        <p class="text-lg lg:text-xl font-bold font-sans text-pretty group-hover:text-primary-content transition-colors">
+        <p class="lg:text-lg xl:text-xl font-bold font-sans text-pretty group-hover:text-primary-content transition-colors">
           {article.title}
         </p>
       </div>
