@@ -13,7 +13,6 @@ const hasImage = frontmatter.image ? true : false;
 
 const images = import.meta.glob<{default: ImageMetadata}>('/src/images/*.{jpeg,jpg,png,gif}');
 const slug = Astro.params.slug;
-console.log('SEO DESCRIPTION: ', frontmatter.seoDescription);
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.seoDescription}>
