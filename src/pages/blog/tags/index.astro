@@ -5,9 +5,11 @@ import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('posts');
 const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
-
 ---
 
-<Layout title="Post Tags">
-<TagList />
+<Layout
+  title="Post Tags"
+  description="A list of tags used in posts on this blog"
+>
+  <TagList />
 </Layout>
