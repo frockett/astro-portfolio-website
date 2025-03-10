@@ -8,7 +8,6 @@ import { sortPosts } from '../../scripts/Utils.js';
 
 const allPosts = await getCollection('posts');
 const sortedPosts = sortPosts(allPosts).sortByDate();
-
 ---
 
 <Layout title="Crockett's Blog">
@@ -26,12 +25,12 @@ const sortedPosts = sortPosts(allPosts).sortByDate();
     <TagList />
   </div>
 
-  <div>
-    <ul class="flex flex-col gap-8 max-w-4xl m-4 p-4 mx-auto" style="">
+  <div class="my-8">
+    <ul class="flex flex-col gap-12 max-w-4xl m-4 p-4 mx-auto" style="">
       {
         sortedPosts.map((post) => (
           <BlogLinkSimple
-            url={`/blog/${post.slug}/`}
+            url={`/blog/${post.slug}`}
             title={post.data.title}
             pubDate={post.data.pubDate}
             description={post.data.description}

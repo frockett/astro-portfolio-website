@@ -6,6 +6,8 @@ import icon from 'astro-icon';
 
 import node from '@astrojs/node';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
   image: {
@@ -16,8 +18,10 @@ export default defineConfig({
       },
     ],
   },
+  site: 'https://crockettford.dev',
+  trailingSlash: 'never',
 
-  integrations: [tailwind(), icon()],
+  integrations: [tailwind(), icon(), sitemap()],
 
   output: 'static',
   adapter: node({

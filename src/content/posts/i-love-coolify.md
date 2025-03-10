@@ -2,6 +2,7 @@
 title: "I 💖 Coolify: Self-Hosting and the Tools That Make it Easy"
 pubDate: 2024-07-16
 description: "The cloud is just someone else's computer."
+seoDescription: "Self-hosting is the past and the future."
 author: Crockett
 tags: ["coding", "self-hosting", "essay"]
 ---

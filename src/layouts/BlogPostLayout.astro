@@ -13,11 +13,12 @@ const hasImage = frontmatter.image ? true : false;
 
 const images = import.meta.glob<{default: ImageMetadata}>('/src/images/*.{jpeg,jpg,png,gif}');
 const slug = Astro.params.slug;
+console.log('SEO DESCRIPTION: ', frontmatter.seoDescription);
 ---
 
-<Layout title={frontmatter.title}>
+<Layout title={frontmatter.title} description={frontmatter.seoDescription}>
   <div class="sticky top-0 z-10 bg-base-200 h-2 flex">
-    <progress id="reading-progress-bar" class="progress progress-primary w-full bg-base-200" value="0" max="100"></progress>
+    <progress id="reading-progress-bar" class="progress rounded-none progress-primary w-full bg-base-200" value="0" max="100"></progress>
     </div>
   <div class="flex flex-shrink mx-4">
     {

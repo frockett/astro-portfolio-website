@@ -2,6 +2,7 @@
 title: 'Deploy Loki and Grafana with Coolify'
 pubDate: 2024-10-04
 description: '(Mis)adventures in amateur devops'
+seoDescription: "A step-by-step guide to deploying Grafana and Loki to a VPS using Coolify."
 author: Crockett
 tags: ["self-hosting", "tutorial", "devops"]
 ---

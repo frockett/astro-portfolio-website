@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 const { title, url, description, pubDate, tags } = Astro.props;
 ---
 
-<li class="flex flex-col">
+<li class="flex flex-col gap-1">
   <div class="italic text-sm mb-1">{pubDate.toDateString()}</div>
   <div>
     <a

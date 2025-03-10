@@ -2,6 +2,7 @@
 title: 'How to Deploy an SSR Astro site to your VPS using Coolify'
 pubDate: 2024-12-20
 description: 'Only marginally more difficult than static.'
+seoDescription: 'This tutorial explains the quirks of deploying an Astro SSR site using Coolify.'
 author: Crockett
 tags: ["self-hosting", "tutorial"]
 ---

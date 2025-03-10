@@ -2,8 +2,9 @@
 dist/
 
 #db
-.db 
-.db-*
+*.db 
+*.db-shm
+*.db-wal
 
 # generated types
 .astro/

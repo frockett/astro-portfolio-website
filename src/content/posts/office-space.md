@@ -2,6 +2,7 @@
 title: "If 'Office Space' Was a Dystopia, What Are We Living in Now?"
 pubDate: 2024-07-07
 description: 'How much does a one-bedroom apartment in Austin cost nowadays?'
+seoDescription: "A rant about wage stagnation and pieces of flare."
 author: Crockett
 image:
     url: '/src/images/office-space-printer.png' 
@@ -20,7 +21,7 @@ The context in which the movie was released illustrates what I mean. <a href="ht
 <Image class="py-4" alt="graph of the U.S. unemployment rate from 1990 to 2010" src="https://upload.wikimedia.org/wikipedia/commons/0/06/US_90s_00s_unemployment.png" inferSize />
 Of course astute readers might counter that we are in fact at the height of the longest boom cycle in history right now and things *still* don't feel good. A key factor in what made 1999 much better than now is the fact that real median income growth was multiple times higher than it is now. <a href="https://www.census.gov/library/publications/2000/demo/p60-209.html" aria-label="link to census data about income">Between 1998 and 1999, real median household income rose by 2.7 percent, the fifth consecutive year of growth</a> Contrast that with 2022, where even with a record high of 65.6% of working women working full-time year-round, real median household income <a href="https://www.census.gov/library/publications/2023/demo/p60-279.html" aria-label="2022 income statistics from census.gov">fell 2.3 percent from the year prior</a>. Even with more members of the household working than ever before, the average household's income is not even keeping pace with inflation. 
 
-By 1999, growing inequality and wage stagnation were already apparent, but their magnitudes were <a href="https://www.epi.org/publication/charting-wage-stagnation/" aria-label="epi.org page showing wage stagnation with multiple metrics">fractions of their present size</a>. In retrospect, the 90s was clearly a time of <a href="https://en.wikipedia.org/wiki/1990s_United_States_boom"> growth that benefited most Americans</a>. If so many cultural products of the mid to late 90s were sounding the alarm about the growing gulf between labor and capital, we've long since grown numb to the howling of the chasm that has grown in its place.    
+By 1999, growing inequality and wage stagnation were already apparent, but their magnitudes were <a href="https://www.epi.org/publication/charting-wage-stagnation/" aria-label="epi.org page showing wage stagnation with multiple metrics">fractions of their present size</a>. In retrospect, the 90s was clearly a time of <a href="https://en.wikipedia.org/wiki/1990s_United_States_boom"> growth that benefited most Americans</a>. If so many cultural products of the mid to late 90s were sounding the alarm about the growing gulf between labor and capital, we've long since become numb to the howling of the chasm that has grown in its place.    
 
 People still find the parts about passive-aggressive managers, malfunctioning printers, and general drudgery highly relatable, but it's far harder to see the existential risk posed by Peter's job and lifestyle now in 2024 than it was 25 years ago. We could write it off as classic Gen X apathy, but it should be clear that there is more to the story than that.    
 

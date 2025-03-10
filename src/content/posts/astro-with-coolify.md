@@ -2,6 +2,7 @@
 title: 'How to Deploy an Astro Site Using Coolify'
 pubDate: 2024-07-17
 description: 'It really is that easy.'
+seoDescription: 'This guide assumes you already have an instance of Coolify up and running and a server for it to manage with something in the ballpark of 1GB of ram minimum.'
 author: Crockett
 tags: ["self-hosting", "tutorial"]
 ---
