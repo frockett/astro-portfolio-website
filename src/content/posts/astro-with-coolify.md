@@ -14,7 +14,7 @@ tags: ["self-hosting", "tutorial"]
 If you're looking for a guide on deploying an Astro site that uses SSR and the Node adapter, complete step 1 of this guide and then check out my newer post on <a href="/blog/astro-ssr-with-coolify">deploying an Astro SSR site using Coolify</a></p>
 
 ## Self-hosting your website
-I've already written about my [enthusiasm for self-hosting](/blog/i-love-coolify/) and especially for Coolify as a tool. The deployment process for an Astro site is incredibly straightforward, but I thought I'd write this quick tutorial for anyone less than confident in their configuration skills. 
+I've already written about my [enthusiasm for self-hosting](/blog/i-love-coolify) and especially for Coolify as a tool. The deployment process for an Astro site is incredibly straightforward, but I thought I'd write this quick tutorial for anyone less than confident in their configuration skills. 
 
 Trying things for yourself and not being afraid to break something is a good mindset, but, once you do break something, sometimes you need help putting it back together. 
 
