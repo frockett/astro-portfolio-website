@@ -10,7 +10,9 @@ tags: ["self-hosting", "tutorial", "coding"]
 ## Why worry about trailing slashes?
 I recently decided to spruce up my personal website. Since building this site, I’ve learned a lot more about technical SEO and best practices. Looking back at the code with fresh eyes made me recoil in horror on several occasions.
 
-One issue I wouldn't have anticipated before was duplicate URLs, since my site happily served URLs both with and without trailing slashes. That means that `crockettford.dev/blog/a-blog-article` was just as valid as `crockettford.dev/blog/a-blog-article/`. This is perfectly fine in terms of UX, but it means that search engines (and my web server) see these as two distinct URLs with identical content. What's more, the www. and non-www. domains were both served independently, leading to a whopping 4 duplicates for every URL.
+One issue I wouldn't have anticipated before was duplicate URLs, since my site happily served URLs both with and without trailing slashes. That means that `crockettford.dev/blog/a-blog-article` was just as valid as `crockettford.dev/blog/a-blog-article/`. 
+
+This is perfectly fine in terms of UX, but it means that search engines (and my web server) see these as two distinct URLs with identical content. What's more, the www. and non-www. domains were both served independently, leading to a whopping ***4 duplicates for every URL***.
 
 Obviously, <a target="_blank" href="https://www.semrush.com/blog/duplicate-content/"> duplicate content isn't good</a>. I had become aware of how to avoid these issues in the time since I first set up my website, but I didn't think to go back and fix past errors until I tried integrating <a target="_blank" href="https://giscus.app/">giscus</a> into my blog for an easy, safe comment system. As the first couple comments rolled in, I got excited, and then quickly worried when I suddenly couldn't see them. 
 
@@ -26,14 +28,14 @@ There were three main issues to solve:
 2. Redirect trailing-slash pages to non-trailing slash pages (since those were the ones Google had indexed and ranked).
 3. Fix meta tags sitewide and add an XML sitemap, among other minor improvements."
 
-### www redirects
+## www redirects
 This one is the simplest. As I mentioned, this site is hosted with Coolify, and the dashboard already has a UI option for this. Just set up an appropriate DNS record on your provider and adjust the UI setting.
 
 ![The UI options for redirecting www and non-www URLs](../../images/www-redirect.png)
 
 Now, anyone going to the www. subdomain will get a 302 redirect to the non-www version of your site.
 
-#### Change 302 to 301
+### Change 302 to 301
 Although we've solved the most basic problem, there's another small improvement we can make. The default redirect that Traefik issues is a [302 redirect](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302), which indicates that content has moved *temporarily*. Obviously that's not the case for us, and we're probably better off using a 301 for the reasons described in [this SEM Rush article](https://www.semrush.com/blog/301-vs-302-redirect/).
 
 We can get Traefik to issue a 301 instead by changing one line of the Traefik labels.
@@ -52,7 +54,7 @@ Beware that the auto-generated service/middleware name in the middle of this lin
 
 Now search engines know that the content that was at www will always be found at the non-www URL.
 
-### Redirect trailing-slash pages to non-trailing slash (or vice-versa)
+## Redirect trailing-slash pages to non-trailing slash (or vice-versa)
 I've decided to redirect to non-trailing slash URLs because that's the format of the pages that are already ranking on Google, so bringing the rest of the site in line with them seems safer than changing the only pages on my site that Google cares about.
 
 As mentioned in the [Astro docs for the trailing slash config options](https://docs.astro.build/en/reference/configuration-reference/#trailingslash): 
@@ -82,7 +84,7 @@ traefik.http.middlewares.add-trailing-slash.redirectregex.replacement=${1}/
 
 Now all URLs with a trailing slash will automatically redirect to their non-trailing slash variant, or vice-versa. Moving forward, I'll assume you've done the same as me and wish to strip the tailing slash from all URLs.
 
-#### Changing Astro to support our new trailing-slash free config
+### Changing Astro to support our new trailing-slash free config
 Astro has built-in config support for whichever option you chose. Modify your astro.config.mjs to include the option: 
 ```
 export default defineConfig({
@@ -92,11 +94,11 @@ export default defineConfig({
 ```
 This will give you a helpful warning if you try to navigate to a page using a URL with a trailing slash during development, identifying any links you've written incorrectly. Also, it will automatically redirect on-rendered pages to their non-trailing slash variant, meaning that between this and our Traefik middleware, we are fully covered for redirects.
 
-### Other technical SEO improvements in Astro
+## Other technical SEO improvements in Astro
 
 These other changes are well-documented elsewhere, so I'll only describe them briefly. 
 
-#### Canonical URLs
+### Canonical URLs
 
 Since we've set the site in our astro config to `site: 'https://crockettford.dev'`, we can automatically generate canonical tags for every page that match our trailing-slash free schema. Put this in the frontmatter of your layout: 
 
@@ -108,11 +110,11 @@ Then add the following tag in your head tag:
 <link rel="canonical" href={canonicalUrl} />
 ```
 
-#### Sitemap Integration
+### Sitemap Integration
 
 Astro has an officially supported [integration that generates a sitemap for you](https://docs.astro.build/en/guides/integrations-guide/sitemap/), which I installed. The installation and configuration instructions on the linked docs page work perfectly. Head to your sitemap URL to doublecheck that it has generated only URLs which reflect your desired trailing-slash setting. 
 
-#### Descriptions
+### Meta Descriptions
 
 For meta descriptions, I decided that I would use the .md file's frontmatter. I wanted to keep my sarcastic descriptions for on-site display, but have a separate description for SEO purposes. For example, here is the frontmatter for this article: 
 
