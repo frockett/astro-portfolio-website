@@ -1,5 +1,5 @@
 ---
-title: "How to Handle Trailing Slash Redirects on Coolify Using Traefik Middleware"
+title: "How to Handle Trailing Slash Redirects for Your Astro Site on Coolify Using Traefik Middleware"
 pubDate: 2025-02-15
 description: "Don't be like me and end up with duplicate pages for every post on your blog..."
 seoDescription: "A guide to setting up Traefik redirects in the Coolify dashboard and fixing technical SEO issues in your Astro blog."

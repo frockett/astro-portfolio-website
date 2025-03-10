@@ -43,7 +43,7 @@ const newestCount = await dbClient
   })
   .from(Views)
   .where(eq(Views.slug, newestPost.slug))
-  .then((res) => res[0].count);
+  .then((res) => res[0]?.count);
 
 const enrichedArticles = [
   {
@@ -68,7 +68,7 @@ const enrichedArticles = [
   enrichedArticles.map((article) => (
     <a
       href={`/blog/${article.slug}`}
-      class="border group hover:border-primary transition-all hover:shadow-md hover:shadow-primary border-b-4 border-r-4 rounded-lg p-4 place-self-stretch overflow-hidden h-36 md:h-52 flex flex-col gap-4 justify-between"
+      class="border group hover:border-primary transition-all hover:shadow-md hover:shadow-primary border-b-4 border-r-4 rounded-lg p-4 place-self-stretch overflow-hidden h-36 md:h-60 flex flex-col gap-4 justify-between"
     >
       <div class="space-y-4">
         <p class="lg:text-lg xl:text-xl font-bold font-sans text-pretty group-hover:text-primary-content transition-colors">
