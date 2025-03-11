@@ -15,7 +15,7 @@ let popularArticles = await dbClient
   })
   .from(Views)
   .orderBy(desc(Views.count))
-  .limit(3);
+  .limit(5);
 
 const blogEntries = await getCollection('posts');
 
@@ -24,9 +24,32 @@ const sortedEntries = blogEntries.sort(
 );
 let newestPost = sortedEntries[0];
 
-popularArticles = popularArticles
-  .filter((article) => article.slug !== newestPost.slug)
-  .slice(0, 2);
+// Filter out the newest post
+popularArticles = popularArticles.filter(
+  (article) => article.slug !== newestPost.slug
+);
+
+// If we don't have enough popular articles, fill with recent posts
+if (popularArticles.length < 2) {
+  // Get recent posts (excluding the newest one)
+  const recentPosts = sortedEntries.slice(1);
+
+  // Create view records for recent posts if they don't exist
+  for (const post of recentPosts) {
+    if (!popularArticles.some((article) => article.slug === post.slug)) {
+      popularArticles.push({
+        slug: post.slug,
+        count: 0, // Zero views
+      });
+    }
+
+    // Break when we have enough
+    if (popularArticles.length >= 2) break;
+  }
+}
+
+// Limit to just 2 popular/recent articles
+popularArticles = popularArticles.slice(0, 2);
 
 const postsMap = blogEntries.reduce((acc, entry) => {
   acc[entry.slug] = {
@@ -43,7 +66,7 @@ const newestCount = await dbClient
   })
   .from(Views)
   .where(eq(Views.slug, newestPost.slug))
-  .then((res) => res[0]?.count);
+  .then((res) => res[0]?.count ?? 0); // Fall back to 0 if undefined
 
 const enrichedArticles = [
   {
@@ -61,7 +84,6 @@ const enrichedArticles = [
     count: article.count,
   })),
 ];
-
 ---
 
 {
