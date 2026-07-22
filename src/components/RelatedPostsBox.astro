@@ -1,32 +1,32 @@
 ---
-import BlogLinkSimple from './BlogLinkSimple.astro';
-import { getCollection } from 'astro:content';
-import { sortPosts } from '../scripts/Utils.js';
+import BlogLinkSimple from "./BlogLinkSimple.astro";
+import { getCollection } from "astro:content";
+import { sortPosts } from "../scripts/Utils.js";
 const { frontmatter } = Astro.props;
 
 const currentTags = frontmatter.tags;
-const allPosts = await getCollection('posts');
+const allPosts = await getCollection("posts");
 const relatedPosts = sortPosts(allPosts).getRelatedPosts(currentTags);
 // console.log(relatedPosts);
 const relatedSansCurrent = relatedPosts.filter(
-  (post) => post.data.title !== frontmatter.title
+    (post) => post.data.title !== frontmatter.title,
 );
 ---
 
 {
-  relatedSansCurrent.length > 0 && (
-    <div class="mx-auto md:max-w-2xl bg-base-300 p-8 rounded flex flex-col gap-2">
-      <div class="md:text-3xl text-xl font-slab font-bold mb-4">
-        Related Posts
-      </div>
-      {relatedSansCurrent.map((post) => (
-        <BlogLinkSimple
-          title={post.data.title}
-          url={`/blog/${post.slug}`}
-          pubDate={post.data.pubDate}
-          tags={post.data.tags}
-        />
-      ))}
-    </div>
-  )
+    relatedSansCurrent.length > 0 && (
+        <div class="mx-auto md:max-w-2xl bg-base-300 p-8 rounded flex flex-col gap-2">
+            <div class="md:text-3xl text-xl font-slab font-bold mb-4">
+                Related Posts
+            </div>
+            {relatedSansCurrent.map((post) => (
+                <BlogLinkSimple
+                    title={post.data.title}
+                    url={`/blog/${post.id}`}
+                    pubDate={post.data.pubDate}
+                    tags={post.data.tags}
+                />
+            ))}
+        </div>
+    )
 }

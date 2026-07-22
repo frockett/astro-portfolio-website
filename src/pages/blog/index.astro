@@ -1,43 +1,46 @@
 ---
-import { getCollection } from 'astro:content';
-import Card from '../../components/Card.astro';
-import Layout from '../../layouts/Layout.astro';
-import BlogLinkSimple from '../../components/BlogLinkSimple.astro';
-import TagList from '../../components/TagList.astro';
-import { sortPosts } from '../../scripts/Utils.js';
+import { getCollection } from "astro:content";
+import Card from "../../components/Card.astro";
+import Layout from "../../layouts/Layout.astro";
+import BlogLinkSimple from "../../components/BlogLinkSimple.astro";
+import TagList from "../../components/TagList.astro";
+import { sortPosts } from "../../scripts/Utils.js";
 
-const allPosts = await getCollection('posts');
+const allPosts = await getCollection("posts");
 const sortedPosts = sortPosts(allPosts).sortByDate();
 ---
 
-<Layout title="Crockett's Blog" description="A collection of posts about self-hosting, web development, and cultural commentary">
-  <div class="max-w-4xl mx-auto p-4 md:mt-8 mt-4">
-    <h2 class="md:text-5xl text-2xl font-slab font-bold">
-      Using a Randomness Beacon to Talk to God
-    </h2>
-    <p class="italic mt-4 md:text-lg">
-      Similar to the one found at the National Institute of Standards and
-      Technology
-    </p>
-  </div>
+<Layout
+    title="Crockett's Blog"
+    description="A collection of posts about self-hosting, web development, and cultural commentary"
+>
+    <div class="max-w-4xl mx-auto p-4 md:mt-8 mt-4">
+        <h2 class="md:text-5xl text-2xl font-slab font-bold">
+            Using a Randomness Beacon to Talk to God
+        </h2>
+        <p class="italic mt-4 md:text-lg">
+            Similar to the one found at the National Institute of Standards and
+            Technology
+        </p>
+    </div>
 
-  <div class="max-w-4xl mx-auto px-4">
-    <TagList />
-  </div>
+    <div class="max-w-4xl mx-auto px-4">
+        <TagList />
+    </div>
 
-  <div class="my-8">
-    <ul class="flex flex-col gap-12 max-w-4xl m-4 p-4 mx-auto" style="">
-      {
-        sortedPosts.map((post) => (
-          <BlogLinkSimple
-            url={`/blog/${post.slug}`}
-            title={post.data.title}
-            pubDate={post.data.pubDate}
-            description={post.data.description}
-            tags={post.data.tags}
-          />
-        ))
-      }
-    </ul>
-  </div>
+    <div class="my-8">
+        <ul class="flex flex-col gap-12 max-w-4xl m-4 p-4 mx-auto" style="">
+            {
+                sortedPosts.map((post) => (
+                    <BlogLinkSimple
+                        url={`/blog/${post.id}`}
+                        title={post.data.title}
+                        pubDate={post.data.pubDate}
+                        description={post.data.description}
+                        tags={post.data.tags}
+                    />
+                ))
+            }
+        </ul>
+    </div>
 </Layout>
