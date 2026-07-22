@@ -17,17 +17,23 @@
     --color-base-300: #e5e5e5;
     --color-base-content: #1f1f1f;
 
+    --color-foreground: hsl(213.75, 17.78%, 9.65%);
+    --color-background: #e8e4df;
+
     --color-cream: #ffdfbd;
     --color-wood: #460b0b;
 
-    --font-sans: "Inter Variable", sans-serif;
-    --font-slab: "Roboto Slab Variable", monospace, serif;
+    --font-sans: var(--font-rethink-sans), mono;
+    --font-mono: var(--font-dm-mono), sans;
 }
 
 /* Dark theme tokens (replicated from the former daisyUI `darkCustom` scheme),
    applied automatically via the user's OS preference. */
 @media (prefers-color-scheme: dark) {
-    @theme {
+    :root {
+        --color-background: hsl(213.75, 17.78%, 9.65%);
+        --color-foreground: #e8e4df;
+
         --color-primary: #b15966;
         --color-primary-content: #d09aa2;
         --color-secondary: #315d53;

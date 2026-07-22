@@ -1,54 +1,121 @@
 ---
 import { Image } from "astro:assets";
+import { sortPosts } from "../scripts/Utils";
+import { getCollection } from "astro:content";
+import BlogLinkSimple from "./BlogLinkSimple.astro";
 import TopArticles from "./TopArticles.astro";
 
 import localBioPhoto from "../images/portrait-danielle-2022.jpg";
+const allPosts = await getCollection("posts");
+const sortedPosts = sortPosts(allPosts).sortByDate();
 ---
 
-<section class="max-w-7xl container space-y-6 xl:space-y-8 mb-12 mx-auto px-6">
-    <div
-        class="grid grid-cols-1 pt-10 pb-6 lg:pt-20 md:grid-cols-2 lg:gap-8 place-items-center"
-    >
-        <div class="space-y-8 pb-6">
-            <h1
-                class="font-slab animate-in fade-in blur-in text-5xl mb-10 lg:text-6xl font-extrabold"
-            >
-                Crockett Ford
-            </h1>
-            <div
-                class="animate-in fade-in blur-in space-y-4 sm:text-lg text-pretty"
-            >
-                <p class="font-sans">
-                    I'm a <strong>developer</strong> who makes <strong
-                        >end-to-end</strong
-                    >
-                    apps, tools, websites and more. If you're here to see what I can
-                    do, take a look at some of my <a
-                        class="text-primary-content font-semibold underline hover:text-primary transition-colors"
-                        href="#work">work</a
-                    > below.
-                </p>
-                <p>
-                    I'm comfortable working in the backend with C# and .Net or
-                    in the front-end using a variety of technologies, but
-                    especially Jamstack frameworks like Astro and UI frameworks
-                    like Svelte.
-                </p>
-                <p class="font-sans">
-                    Sometimes I post to my <a
-                        class="text-primary-content font-semibold underline hover:text-primary transition-colors"
-                        href="/blog/">blog</a
-                    >, where I write about self-hosting, document projects I'm
-                    working on, or rant about movies and books.
-                </p>
+<section
+    class="max-w-7xl container space-y-8 xl:space-y-8 mb-12 h-full mx-auto"
+>
+    <div class="grid grid-cols-1 pt-10 pb-6 lg:gap-8">
+        <div class="space-y-8 pb-6 max-w-lg px-4 h-full tracking-tight">
+            <div class="space-y-6 text-pretty">
+                <Image
+                    src={localBioPhoto}
+                    alt="A portrait of Crockett"
+                    class="h-16 w-16 rounded-full"
+                />
+                <h1 class="tracking-tight font-semibold text-lg">Crockett</h1>
+                <div class="space-y-6 text-pretty">
+                    <p class="font-sans">
+                        A software developer who likes to pretend he's good at
+                        design.
+                    </p>
+                    <p class="font-sans">
+                        Mostly writes web apps with Sveltekit, Astro, and
+                        whatever other Typescript framework is at hand.
+                    </p>
+                    <p>Enjoys writing backend APIs and services in Go.</p>
+                    <p>
+                        Currently obsessed with GEO/AEO data analysis, tools,
+                        and optimization at <a
+                            href="https://withsmoot.com"
+                            class="font-mono underline">Smoot</a
+                        >.
+                    </p>
+                    <p>
+                        In a previous life: on-level geography team lead and
+                        honors English teacher at an international school in
+                        Shanghai.
+                    </p>
+                </div>
             </div>
-        </div>
+            <div
+                class="space-y-6 text-pretty border-t border-foreground/30 pt-8"
+            >
+                <h2 class="font-medium text-lg">Writing</h2>
+                <ul class="flex flex-col gap-8 mx-auto" style="">
+                    {
+                        sortedPosts
+                            .slice(0, 10)
+                            .map((post) => (
+                                <BlogLinkSimple
+                                    url={`/blog/${post.id}`}
+                                    title={post.data.title}
+                                    pubDate={post.data.pubDate}
+                                    description={post.data.description}
+                                    tags={post.data.tags}
+                                />
+                            ))
+                    }
+                </ul>
+            </div>
+            <div
+                class="space-y-6 text-pretty border-t border-foreground/30 pt-8"
+            >
+                <h2 class="font-medium text-lg">Work</h2>
+                <ul class="flex flex-col gap-8 mx-auto" style="">
+                    <li
+                        class="grid grid-cols-[auto_0.2fr_1fr] gap-6 items-center"
+                    >
+                        <div class="italic text-sm">2026</div>
+                        <div>
+                            <a
+                                class="transition text-foreground font-medium hover:underline inline"
+                                href="https://withsmoot.com">Smoot</a
+                            >
+                        </div>
+                        <p class="ml-auto">Founding Engineer, AEO Researcher</p>
+                    </li>
+                    <li
+                        class="grid grid-cols-[auto_0.2fr_1fr] gap-6 items-center"
+                    >
+                        <div class="italic text-sm">2023</div>
+                        <div>
+                            <a
+                                class="transition text-foreground font-medium hover:underline inline"
+                                href="https://dataparty.dev">Dataparty</a
+                            >
+                        </div>
+                        <p class="ml-auto">Software Engineer & Designer</p>
+                    </li>
+                    <li
+                        class="grid grid-cols-[auto_0.2fr_1fr] gap-6 items-center"
+                    >
+                        <div class="italic text-sm">2020</div>
+                        <div>
+                            <a
+                                class="transition text-foreground font-medium hover:underline inline"
+                                href="https://www.shsid.org/">SHSID</a
+                            >
+                        </div>
+                        <p class="ml-auto">Geography Team Lead</p>
+                    </li>
+                </ul>
+            </div>
 
-        <div
+            <!-- <div
             class="rounded-full overflow-hidden animate-in fade-in blur-in w-9/12 md:w-8/12 mx-auto"
         >
             <Image src={localBioPhoto} alt="A portrait of Crockett" class="" />
+        </div> -->
         </div>
+        <!-- <TopArticles /> -->
     </div>
-    <TopArticles />
 </section>

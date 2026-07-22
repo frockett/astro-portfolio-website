@@ -1,18 +1,12 @@
 ---
-import Navigation from './Navigation.astro';
-import ThemeController from './ThemeController.astro';
+import Navigation from "./Navigation.astro";
+import ThemeController from "./ThemeController.astro";
 ---
 
-<header class="w-screen min-h-20 grid grid-cols-3 px-8">
-  <div
-    class="col-start-2 place-self-center w-min flex shrink items-center gap-8"
-
-  >
-    <nav>
-      <Navigation />
-    </nav>
-  </div>
-  <div class="col-start-3 justify-self-end self-center">
-    <ThemeController />
-  </div>
+<header class="container max-w-7xl py-8 mx-auto min-h-16 px-4">
+    <div class="w-min flex shrink items-center gap-8">
+        <nav>
+            <Navigation />
+        </nav>
+    </div>
 </header>

@@ -15,13 +15,12 @@ const slug = Astro.params.slug;
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.seoDescription}>
-  <div class="sticky top-0 z-10 bg-base-200 h-2 flex">
-    <progress id="reading-progress-bar" class="w-full h-2 rounded-none appearance-none bg-base-200 [&::-webkit-progress-bar]:bg-base-200 [&::-webkit-progress-value]:bg-primary [&::-moz-progress-bar]:bg-primary" value="0" max="100"></progress>
-    </div>
-  <div class="flex flex-shrink mx-4">
+
+    <article class="container mx-auto px-4 max-w-7xl">
+  <div class="flex flex-shrink">
     {
       hasImage ? (
-        <div class="max-w-[1000px] mx-auto">
+        <div class="max-w-[1000px]">
         <Image
           class="mx-auto py-8"
           src={images[frontmatter.image.url]()}
@@ -35,7 +34,7 @@ const slug = Astro.params.slug;
     }
   </div>
 
-  <div class="m-4 py-4 px-8 flex flex-col gap-4 md:max-w-4xl mx-auto">
+  <div class="my-4 py-4 flex flex-col gap-4 md:max-w-4xl">
     <h1 class="font-slab font-bold text-2xl sm:text-4xl">{frontmatter.title}</h1>
     <ViewCounter server:defer slug={slug}>
       <ViewCounterLoading slot="fallback"></ViewCounterLoading>
@@ -54,7 +53,7 @@ const slug = Astro.params.slug;
 
 
   <div
-    class="mx-auto px-8 mb-32 max-w-4xl text-lg prose prose-h1:font-bold prose-h2:text-xl prose-h1:text-2xl md:prose-h1:text-4xl md:prose-h2:text-3xl prose-h3:text-lg md:prose-h3:text-xl leading-8 font-sans rounded-md"
+    class=" mb-32 prose prose-h1:font-bold prose-h2:text-xl prose-h1:text-2xl md:prose-h1:text-4xl md:prose-h2:text-3xl prose-h3:text-lg md:prose-h3:text-xl leading-8 font-sans rounded-md text-foreground prose-headings:text-foreground prose-a:text-foreground   prose-em:text-foreground prose-strong:text-foreground"
   >
 
     <slot />
@@ -62,27 +61,8 @@ const slug = Astro.params.slug;
     <RelatedPostsBox frontmatter={frontmatter}></RelatedPostsBox>
     <PostComments></PostComments>
   </div>
+    </article>
 
-  <script>
-  // Function to update the progress bar
-  function updateProgressBar() {
-    const progressBar = document.getElementById('reading-progress-bar');
-    const scrollTop = window.scrollY; // Current vertical scroll position
-    const documentHeight = document.documentElement.scrollHeight; // Total height of the document
-    const windowHeight = window.innerHeight; // Height of the visible window
 
-    // Calculate the total scrollable height
-    const scrollableHeight = documentHeight - windowHeight;
-
-    // Calculate the scroll progress in percentage
-    const scrollProgress = (scrollTop / scrollableHeight) * 100;
-
-    // Update the value of the progress bar
-    progressBar.value = scrollProgress;
-  }
-
-  // Attach the updateProgressBar function to the scroll event
-  window.addEventListener('scroll', updateProgressBar);
-</script>
 
 </Layout>

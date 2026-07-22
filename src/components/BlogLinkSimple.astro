@@ -1,22 +1,22 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 const { title, url, description, pubDate, tags } = Astro.props;
 ---
 
-<li class="flex flex-col gap-1">
-  <div class="italic text-sm mb-1">{pubDate.toDateString()}</div>
-  <div>
-    <a
-      class="transition text-primary-content font-semibold text-lg md:text-xl hover:underline inline"
-      href={url}>{title}</a
-    >
-  </div>
-  <div class="mt-1">{description}</div>
-  <div class="flex gap-2 items-center justify-start flex-wrap mt-2">
-    {tags.map((tag) => (
-    <a href=`/blog/tags/${tag}`>
-      <p class="transition border-dotted border-2 m-0 border-primary hover:bg-primary rounded-full p-1 px-2 sm:text-sm text-xs font-semibold hover:text-white w-max hover:underline">{tag}</p>
-    </a>
-  ))}
-</div>
+<li class="grid grid-cols-[9.5ch_1fr] gap-6 items-center">
+    <div class="italic text-sm">
+        {
+            pubDate.toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+            })
+        }
+    </div>
+    <div>
+        <a
+            class="transition text-foreground font-medium hover:underline inline"
+            href={url}>{title}</a
+        >
+    </div>
 </li>

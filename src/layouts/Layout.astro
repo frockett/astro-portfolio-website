@@ -2,6 +2,7 @@
 import "../styles/base.css";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/roboto-slab";
+import { Font } from "astro:assets";
 import Footer from "../components/footer/Footer.astro";
 import Header from "../components/header/Header.astro";
 interface Props {
@@ -18,6 +19,8 @@ const showMetaDescription: boolean = !!description;
 <!doctype html>
 <html lang="en">
     <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
         <script
             defer
             src="https://analytics.crockettford.dev/script.js"
@@ -40,6 +43,8 @@ const showMetaDescription: boolean = !!description;
             href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
+        <Font cssVariable="--font-rethink-sans" preload />
+        <Font cssVariable="--font-dm-mono" preload />
         <meta name="generator" content={Astro.generator} />
         <meta name="description" content={description} />
         <title>{title}</title>
@@ -51,10 +56,10 @@ const showMetaDescription: boolean = !!description;
         </script>
     </head>
     <body
-        class="bg-base-200 text-base-content flex flex-col min-h-screen max-w-full m-0 overflow-x-hidden"
+        class="bg-background text-foreground flex flex-col min-h-screen max-w-full m-0 overflow-x-hidden"
     >
         <Header />
-        <main class="flex-grow">
+        <main class="grow">
             <slot />
         </main>
         <Footer />

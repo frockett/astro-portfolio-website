@@ -1,146 +1,31 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import LandingHero from '../components/LandingHero.astro';
-import PortfolioItem from '../components/PortfolioItem.astro';
-import PortfolioItemMirrored from '../components/PortfolioItemMirrored.astro';
-import PortfolioCard from '../components/PortfolioCard.astro';
-import AboutTimeline from '../components/AboutTimeline.astro';
-import FixedSocialsBox from '../components/FixedSocialsBox.astro';
+import Layout from "../layouts/Layout.astro";
+import LandingHero from "../components/LandingHero.astro";
+import PortfolioItem from "../components/PortfolioItem.astro";
+import PortfolioItemMirrored from "../components/PortfolioItemMirrored.astro";
+import PortfolioCard from "../components/PortfolioCard.astro";
+import AboutTimeline from "../components/AboutTimeline.astro";
+import FixedSocialsBox from "../components/FixedSocialsBox.astro";
 
-import { Image } from 'astro:assets';
-import { getImage } from 'astro:assets';
+import { Image } from "astro:assets";
+import { getImage } from "astro:assets";
 
-import localBioPhoto from '../images/portrait-danielle-2022.jpg';
-import scraperPortImg from '../images/mercari-scraper-email-screenshot.png';
-import openLaunchImg from '../images/open-launch-email-screen.png';
-import datapartyImg from '../images/dataparty-website.png';
-import shiftsGif from '../images/shifts-resized.gif';
-import backgroundImage from '../images/md-geometric-bg.jpg';
+import localBioPhoto from "../images/portrait-danielle-2022.jpg";
+import scraperPortImg from "../images/mercari-scraper-email-screenshot.png";
+import openLaunchImg from "../images/open-launch-email-screen.png";
+import datapartyImg from "../images/dataparty-website.png";
+import shiftsGif from "../images/shifts-resized.gif";
+import backgroundImage from "../images/md-geometric-bg.jpg";
 
-import SocialIcon from '../components/SocialIcon.astro';
+import SocialIcon from "../components/SocialIcon.astro";
 const opttimizedScraperPortImg = await getImage({ src: scraperPortImg });
 ---
 
-<Layout title="Crockett Ford's personal website" description="Fullstack developer, amateur critic.">
-  <FixedSocialsBox />
-  <LandingHero />
-  <section id="work" class="bg-base-300 w-full">
-    <div class="container p-6 mx-auto max-w-7xl">
-      <h2 class="font-sans my-4 font-extrabold text-3xl sm:text-4xl">
-        Selected Projects
-      </h2>
-
-      <ul class="space-y-0">
-        <PortfolioItem
-          projectTitle="DataParty"
-          projectDescription="The website for DataParty, the web development company I started in late 2024. Built using Astro and Alpine.js."
-          tagList={['Astro', 'Alpine.js', 'Web Design']}
-          iconLinks={[
-            {
-              link: 'https://dataparty.dev',
-              icon: 'bi:box-arrow-up-right',
-              ariaLabel: 'Link to DataParty website',
-              size: 25,
-            },
-          ]}
-          imageSrc={datapartyImg}
-          imageLink="https://dataparty.dev"
-          imageAlt="The DataParty website landing page."
-        />
-        <PortfolioItemMirrored
-          projectTitle="OpenLaunch"
-          projectDescription="A Blazor app for managing pre-launch waitlists and email subscriptions. Includes AWS SES integration, templating, embedded image hosting, and unsubscribe link generation. Designed as an all-in-one, self-hostable solution."
-          tagList={['Blazor', 'Asp.Net Core Identity', 'AWS']}
-          iconLinks={[
-            {
-              link: 'https://github.com/frockett/OpenLaunch',
-              icon: 'bi:github',
-              ariaLabel: 'Github',
-            },
-          ]}
-          imageSrc={openLaunchImg}
-          imageLink="https://github.com/frockett/OpenLaunch"
-          imageAlt="The OpenLaunch email templating screen."
-        />
-        <PortfolioItem
-          projectTitle="Price alert bot"
-          projectDescription="A simple .net app that performs keyword searches on mercari and sends hourly email alerts for listings within a specified price range. Built to save resellers time sourcing new listings."
-          tagList={['.Net', 'Playwright', 'Docker']}
-          iconLinks={[
-            {
-              link: 'https://github.com/frockett/product-scraper',
-              icon: 'bi:github',
-              ariaLabel: 'Github',
-            },
-          ]}
-          imageSrc={scraperPortImg}
-          imageLink="https://github.com/frockett/product-scraper"
-          imageAlt="a screenshot of an email containing a list full of flagged listings"
-        />
-      </ul>
-    </div>
-  </section>
-  <!-- <div class="mx-auto mt-8 p-8 px-16 md:max-w-7xl">
-    <h2 class="font-sans text-2xl sm:text-4xl font-bold">Other Projects</h2>
-  </div>
-  <div
-    class="md:max-w-7xl grid sm:grid-cols-2 md:grid-cols-3 mx-auto gap-6 p-4 px-16 mb-32"
-    style="grid-auto-rows:1fr;"
-  >
-    <PortfolioCard
-      projectTitle="Phonebook App"
-      projectDescription="Use EF core and MSSQL Server to edit contacts and contact groups. Basic experiment with EF Core and relational databases."
-      tagList={['.Net', 'EF Core', 'MS SQL']}
-      iconLinks={[
-        {
-          link: 'https://github.com/frockett/Console-Phonebook',
-          icon: 'bi:github',
-          ariaLabel: 'Github',
-        },
-      ]}
-    />
-    <PortfolioCard
-      projectTitle="Excel Reader"
-      projectDescription="Read data from a spreadsheet into a database while logging to the console."
-      tagList={['.Net', 'EF Core', 'SQLite', 'EPPlus']}
-      iconLinks={[
-        {
-          link: 'https://github.com/frockett/Console-ExcelReader',
-          icon: 'bi:github',
-          ariaLabel: 'Github',
-        },
-      ]}
-    />
-    <PortfolioCard
-      projectTitle="Personal Website"
-      projectDescription="This website uses Astro, Tailwind CSS, and good-old HTML. It's lightning fast, too. Go ahead and check out the Lighthouse score ;)"
-      tagList={['Astro', 'Tailwind CSS', 'Web Design']}
-      iconLinks={[
-        {
-          link: 'https://github.com/frockett/astro-portfolio-website',
-          icon: 'bi:github',
-        },
-      ]}
-    />
-    <PortfolioCard
-      projectTitle="Sales Tracking Solution"
-      projectDescription="A simple console app solution I built for my wife's small business. Track sales, see monthly graphs, and more! Simple and light."
-      tagList={['.Net', 'EF Core', 'SQLite']}
-      iconLinks={[
-        {
-          link: 'https://github.com/frockett/sales-tracking-app',
-          icon: 'bi:github',
-        },
-      ]}
-    />
-  </div> -->
-  <!-- <section>
-    <AboutTimeline />
-  </section> -->
+<Layout
+    title="Crockett Ford's personal website"
+    description="Fullstack developer, amateur critic."
+>
+    <LandingHero />
 </Layout>
 
-<style>
-  * {
-    /* border: 1px solid red; */
-  }
-</style>
+<style></style>

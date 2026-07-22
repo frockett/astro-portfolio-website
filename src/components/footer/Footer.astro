@@ -1,28 +1,26 @@
 ---
-import SocialIcon from '../SocialIcon.astro';
-import { Icon } from 'astro-icon/components';
+import SocialIcon from "../SocialIcon.astro";
+import { Icon } from "astro-icon/components";
 ---
 
-<footer class="w-full h-20">
-  <div
-    class="h-full flex justify-center items-center gap-4 bg-neutral text-neutral-content"
-  >
-    <SocialIcon
-      ariaLabel="link to Crockett's Github"
-      link="https://github.com/frockett"
-      icon="bi:github"
-    />
-    <SocialIcon
-      ariaLabel="link to Crockett's Twitter"
-      link="https://x.com/_crockettford"
-      icon="bi:twitter-x"
-    />
-    <SocialIcon
-      ariaLabel="click to send Crockett an email"
-      link="mailto:crockett.d.ford@gmail.com"
-      icon="bi:envelope"
-    />
-  </div>
+<footer class="container max-w-7xl py-8 mx-auto min-h-16 px-8">
+    <div class="h-full flex items-center gap-4 bg-background text-foreground">
+        <SocialIcon
+            ariaLabel="link to Crockett's Github"
+            link="https://github.com/frockett"
+            icon="bi:github"
+        />
+        <SocialIcon
+            ariaLabel="link to Crockett's Twitter"
+            link="https://x.com/_crockettford"
+            icon="bi:twitter-x"
+        />
+        <SocialIcon
+            ariaLabel="click to send Crockett an email"
+            link="mailto:crockett.d.ford@gmail.com"
+            icon="bi:envelope"
+        />
+    </div>
 </footer>
 
 <style></style>
