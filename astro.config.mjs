@@ -1,30 +1,31 @@
-import 'dotenv/config';
-import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
-
-import icon from 'astro-icon';
-
-import node from '@astrojs/node';
-
-import sitemap from '@astrojs/sitemap';
+import "dotenv/config";
+import { defineConfig } from "astro/config";
+import icon from "astro-icon";
+import node from "@astrojs/node";
+import sitemap from "@astrojs/sitemap";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
   image: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'i.imgur.com',
+        protocol: "https",
+        hostname: "i.imgur.com",
       },
     ],
   },
-  site: 'https://crockettford.dev',
-  trailingSlash: 'never',
+  site: "https://crockettford.dev",
+  trailingSlash: "never",
 
-  integrations: [tailwind(), icon(), sitemap()],
+  integrations: [icon(), sitemap()],
 
-  output: 'static',
+  output: "static",
   adapter: node({
-    mode: 'standalone',
+    mode: "standalone",
   }),
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

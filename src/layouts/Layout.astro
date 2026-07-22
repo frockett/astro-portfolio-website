@@ -1,11 +1,12 @@
 ---
-import '@fontsource-variable/inter';
-import '@fontsource-variable/roboto-slab';
-import Footer from '../components/footer/Footer.astro';
-import Header from '../components/header/Header.astro';
+import "../styles/base.css";
+import "@fontsource-variable/inter";
+import "@fontsource-variable/roboto-slab";
+import Footer from "../components/footer/Footer.astro";
+import Header from "../components/header/Header.astro";
 interface Props {
-  title: string;
-  description?: string;
+    title: string;
+    description?: string;
 }
 
 const { title, description } = Astro.props;
@@ -16,64 +17,57 @@ const showMetaDescription: boolean = !!description;
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"
-    ></script>
-    <script is:inline>
-      function checkForPreference() {
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'darkCustom';
-        } else {
-          return 'lightCustom';
-        }
-      }
+    <head>
+        <script
+            defer
+            src="https://analytics.crockettford.dev/script.js"
+            data-website-id="d2ba555a-333d-4c5e-b78b-960662cdd75a"></script>
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="description" content={description} />
+        <title>{title}</title>
+        <link rel="canonical" href={canonicalUrl} />
+        <link rel="sitemap" href="/sitemap-index.xml" />
+        <script>
+            import { Observer } from "tailwindcss-intersect";
+            Observer.start();
+        </script>
+    </head>
+    <body
+        class="bg-base-200 text-base-content flex flex-col min-h-screen max-w-full m-0 overflow-x-hidden"
+    >
+        <Header />
+        <main class="flex-grow">
+            <slot />
+        </main>
+        <Footer />
 
-      const preference = checkForPreference();
-      const theme = localStorage.getItem('theme') || preference;
-
-      try {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-      } catch (e) {}
-    </script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <script
-      defer
-      src="https://analytics.crockettford.dev/script.js"
-      data-website-id="d2ba555a-333d-4c5e-b78b-960662cdd75a"></script>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
-    <title>{title}</title>
-    <link rel="canonical" href={canonicalUrl} />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    <script>
-      import { Observer } from 'tailwindcss-intersect';
-      Observer.start();
-    </script>
-  </head>
-  <body
-    class="bg-base-200 flex flex-col min-h-screen max-w-full m-0 overflow-x-hidden"
-  >
-    <Header />
-    <main class="flex-grow">
-      <slot />
-    </main>
-    <Footer />
-
-    <style>
-      :global(html) {
-        scroll-behavior: smooth;
-      }
-      @media (prefers-reduced-motion: reduce) {
-        :global(html) {
-          scroll-behavior: auto;
-        }
-      }
-    </style>
-  </body>
+        <style>
+            :global(html) {
+                scroll-behavior: smooth;
+            }
+            @media (prefers-reduced-motion: reduce) {
+                :global(html) {
+                    scroll-behavior: auto;
+                }
+            }
+        </style>
+    </body>
 </html>

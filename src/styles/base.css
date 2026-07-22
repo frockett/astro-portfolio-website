@@ -1,3 +1,42 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@plugin "@tailwindcss/typography";
+@plugin "tailwindcss-intersect";
+
+/* Light theme tokens (replicated from the former daisyUI `lightCustom` scheme). */
+@theme {
+    --color-primary: #4ea699;
+    --color-primary-content: #3a7869;
+    --color-secondary: #cea2ac;
+    --color-accent: #2dd881;
+    --color-neutral: #333333;
+    --color-neutral-content: #8e8e8e;
+    --color-base-100: #ffffff;
+    --color-base-200: #f5f5f5;
+    --color-base-300: #e5e5e5;
+    --color-base-content: #1f1f1f;
+
+    --color-cream: #ffdfbd;
+    --color-wood: #460b0b;
+
+    --font-sans: "Inter Variable", sans-serif;
+    --font-slab: "Roboto Slab Variable", monospace, serif;
+}
+
+/* Dark theme tokens (replicated from the former daisyUI `darkCustom` scheme),
+   applied automatically via the user's OS preference. */
+@media (prefers-color-scheme: dark) {
+    @theme {
+        --color-primary: #b15966;
+        --color-primary-content: #d09aa2;
+        --color-secondary: #315d53;
+        --color-accent: #d22e7e;
+        --color-neutral: #cccccc;
+        --color-neutral-content: #8a8a8a;
+        --color-base-100: #000000;
+        --color-base-200: #121212;
+        --color-base-300: #1f1f1f;
+        --color-base-content: #c8cbd0;
+    }
+}
