@@ -13,14 +13,16 @@ const sortedPosts = sortPosts(allPosts).sortByDate();
 <section
     class="max-w-7xl container space-y-8 xl:space-y-8 mb-12 h-full mx-auto"
 >
-    <div class="grid grid-cols-1 pt-10 pb-6 lg:gap-8">
+    <div class="grid grid-cols-1 pt-4 md:pt-6 pb-6 lg:gap-8">
         <div class="space-y-8 pb-6 max-w-lg px-4 h-full tracking-tight">
             <div class="space-y-6 text-pretty">
-                <Image
-                    src={localBioPhoto}
-                    alt="A portrait of Crockett"
-                    class="h-16 w-16 rounded-full"
-                />
+                <div class="w-16 h-16 rounded-full overflow-hidden">
+                    <Image
+                        src={localBioPhoto}
+                        alt="A portrait of Crockett"
+                        class="object-center"
+                    />
+                </div>
                 <h1 class="tracking-tight font-semibold text-lg">Crockett</h1>
                 <div class="space-y-6 text-pretty">
                     <p class="font-sans">
@@ -53,7 +55,7 @@ const sortedPosts = sortPosts(allPosts).sortByDate();
                 <ul class="flex flex-col gap-8 mx-auto" style="">
                     {
                         sortedPosts
-                            .slice(0, 10)
+                            .slice(0, 5)
                             .map((post) => (
                                 <BlogLinkSimple
                                     url={`/blog/${post.id}`}
@@ -65,9 +67,12 @@ const sortedPosts = sortPosts(allPosts).sortByDate();
                             ))
                     }
                 </ul>
+                <a href="/blog" class="underline ml-auto w-fit block"
+                    >See all posts</a
+                >
             </div>
             <div
-                class="space-y-6 text-pretty border-t border-foreground/30 pt-8"
+                class="space-y-6 text-pretty max-md:text-sm border-t border-foreground/30 pt-8"
             >
                 <h2 class="font-medium text-lg">Work</h2>
                 <ul class="flex flex-col gap-8 mx-auto" style="">
@@ -81,7 +86,9 @@ const sortedPosts = sortPosts(allPosts).sortByDate();
                                 href="https://withsmoot.com">Smoot</a
                             >
                         </div>
-                        <p class="ml-auto">Founding Engineer, AEO Researcher</p>
+                        <p class="ml-auto text-nowrap">
+                            Founding Engineer, Researcher
+                        </p>
                     </li>
                     <li
                         class="grid grid-cols-[auto_0.2fr_1fr] gap-6 items-center"

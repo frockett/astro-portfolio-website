@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 const { title, url, description, pubDate, tags } = Astro.props;
 ---
 
-<li class="grid grid-cols-[9.5ch_1fr] gap-6 items-center">
+<li class="grid grid-cols-[9.5ch_1fr] gap-6 items-baseline">
     <div class="italic text-sm">
         {
             pubDate.toLocaleDateString("en-US", {
@@ -13,7 +13,7 @@ const { title, url, description, pubDate, tags } = Astro.props;
             })
         }
     </div>
-    <div>
+    <div class="max-md:text-sm">
         <a
             class="transition text-foreground font-medium hover:underline inline"
             href={url}>{title}</a
